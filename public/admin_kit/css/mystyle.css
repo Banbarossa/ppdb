@@ -1,0 +1,88 @@
+
+
+:root{
+    --maroon:maroon;
+}
+
+@keyframes moveUpDown {
+    0% {
+    transform: translateY(0);
+    }
+    50% {
+    transform: translateY(-20px);
+    }
+    100% {
+    transform: translateY(0);
+    }
+}
+
+
+.animated-image {
+    animation: moveUpDown 5s infinite;
+    transition: transform 0.5s ease-in-out
+}
+
+.text-maroon{
+    color:var(--maroon);
+}
+
+
+.hero-section{
+    display: flex;
+    align-items: center;
+}
+
+.nav-item .active{
+    color: var(--maroon);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 3px solid maroon;
+}
+
+.card{
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.09);
+
+}
+
+.card:hover{
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.section-title{
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--maroon);
+    margin: 2rem 0rem 4rem 0rem;
+}
+
+.bg-mesjid{
+    position: relative;
+}
+
+.bg-mesjid::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url('/images/mesjid.png');
+    background-size:cover;
+    background-repeat: no-repeat;
+    filter: opacity(0.2);
+
+}
+.bg-navbar{
+    background-color: rgb(203, 198, 198);
+}
+.contact-list li{
+    list-style: none;
+    
+}
+.contact-list li a{
+    text-decoration: none;
+    
+}
+
+
+
