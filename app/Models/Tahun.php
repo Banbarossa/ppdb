@@ -21,4 +21,9 @@ class Tahun extends Model
         return $this->hasMany(User::class);
     }
 
+    public static function search($query)
+    {
+        return self::where('tahun', 'LIKE', '%' . $query . '%')->paginate();
+    }
+
 }

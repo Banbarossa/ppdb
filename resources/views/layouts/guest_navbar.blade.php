@@ -17,14 +17,20 @@
                         <a class="nav-link {{request()->is('/psb')?'active':''}}" aria-current="page" href="/psb">Dashboard</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/#jalur-pendaftaran">Register</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link {{request()->routeIs('psb.login')?'active':''}}" href="{{route('psb.login')}}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{request()->routeIs('admin.login')?'active':''}}" href="{{route('admin.login')}}">Admin Area</a>
                     </li>
                     {{-- <li class="nav-item">
                         <a class="nav-link" href="{{route('register')}}">register</a>
                     </li> --}}
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="">Admin</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

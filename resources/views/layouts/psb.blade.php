@@ -20,16 +20,25 @@
     <link href="{{ asset('admin_kit/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+   
 
 </head>
 
 <body>
     <div class="wrapper">
-        @include('layouts.sidebar')
+        @php
+            $getPrefix = request()->route()->getPrefix();
+        @endphp
+        
+        @if ($getPrefix === 'psb')
+            @include('layouts.psb-sidebar')
+        @elseif ($getPrefix === 'admin')
+            @include('layouts.adminpsb-sidebar')
+        @endif
 
         <div class="main">
             @include('layouts.navbar')
-
+            
 			@yield('content')
 
             {{-- @include('layouts.footer') --}}

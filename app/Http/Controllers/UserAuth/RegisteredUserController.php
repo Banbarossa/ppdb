@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\UserAuth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\UserRegisterEmail;
+use App\Jobs\SendEmailQueueJob;
 use App\Models\JalurMasuk;
 use App\Models\Jenjang;
 use App\Models\NewStudent;
@@ -13,7 +13,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\View\View;
@@ -93,7 +92,9 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
-        Mail::to('banbarossa@gmail.com')->send(new UserRegisterEmail($user));
+
+        dispatch(new SendEmailQueueJob('banbarossa@gmail.com', $user));
+        // Mail::to('banbarossa@gmail.com')->send(new UserRegisterEmail($user));
 
         // sweat alert
         Alert::success('Pendaftaran Berhasil', 'Terima Kasih sudah mendaftar, konfirmasi pendaftaran kepanitia untuk mengaktifkan akun. jika sudah disetujui silahkan login untuk melengkapi pendaftaran');

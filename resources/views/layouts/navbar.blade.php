@@ -174,11 +174,25 @@
                             data-feather="help-circle"></i> Help Center</a>
                     <div class="dropdown-divider"></div>
 
-                    <form action="{{ route('logout') }}" method="post">
-                        @csrf
-                        <button class="dropdown-item text-danger" type="submit"><i class="align-middle me-1"
-                            data-feather="log-out"></i>Log Out</button>
-                    </form>
+                    @php
+                        $getPrefix = request()->route()->getPrefix();
+                    @endphp
+
+                    @if ($getPrefix === 'psb')
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <button class="dropdown-item text-danger" type="submit"><i class="align-middle me-1"
+                                data-feather="log-out"></i>Log Out</button>
+                        </form>
+
+                    @elseif ($getPrefix === 'admin')
+                        <form action="{{ route('admin.logout') }}" method="post">
+                            @csrf
+                            <button class="dropdown-item text-danger" type="submit"><i class="align-middle me-1"
+                                data-feather="log-out"></i>Sign Out</button>
+                        </form>
+                    @endif
+                    
 
                 </div>
             </li>

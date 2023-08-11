@@ -27,6 +27,8 @@ require __DIR__ . '/user_auth.php';
 
 require __DIR__ . '/psb_section.php';
 
+require __DIR__ . '/admin_section.php';
+
 // coba panggil gambar dari storage
 
 route::get('gambar', function () {
@@ -34,11 +36,12 @@ route::get('gambar', function () {
     return view('testgambar', compact('gambar'));
 });
 
+// belum masuk ke auth
+
 route::get('/gambar/{name}', function (String $name) {
     $gambar = storage_path('app/resiPendaftaran/' . $name);
 
     return response()->file($gambar);
-    // return view('testgambar', compact('gambar'));
 });
 
 // sementara
