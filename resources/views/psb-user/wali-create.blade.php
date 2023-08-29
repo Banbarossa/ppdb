@@ -38,7 +38,7 @@
                             <label class="form-label">No HP (+62)</label>
                             <input class="form-control form-control-lg @error('no_hp_ayah') is-invalid @enderror"
                                 type="text" id="no_hp_ayah" name="no_hp_ayah"
-                                value="{{ old('no_hp_ayah') }}"
+                                value="{{ old('no_hp_ibu') ?? $data['siswa']->no_hp_ibu }}"
                                 placeholder="Enter your phone number" />
                             <x-input-error :messages="$errors->get('no_hp_ayah')" class="mt-2" />
                         </div>
@@ -76,7 +76,7 @@
                             <label class="form-label">No HP (+62)</label>
                             <input class="form-control form-control-lg @error('no_hp_ibu') is-invalid @enderror"
                                 type="text" id="no_hp_ibu" name="no_hp_ibu"
-                                value="{{ old('no_hp_ibu') }}"
+                                value="{{ old('no_hp_ibu') ?? $data['siswa']->no_hp_ibu }}"
                                 placeholder="Enter your phone number" />
                             <x-input-error :messages="$errors->get('no_hp_ibu')" class="mt-2" />
                         </div>
@@ -97,7 +97,7 @@
 </x-user-content>
 
 @push('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 <!-- Tambahkan plugin jQuery Masked Input -->
@@ -134,7 +134,6 @@
             disableFormElements();
         }else{
             enableFormElements();
-
         }
 
 

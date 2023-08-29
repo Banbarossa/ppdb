@@ -73,7 +73,7 @@ class RegisteredUserController extends Controller
             'resi' => $filename,
             'nama_jalur' => $jalur_masuk,
             'biaya_pendaftaran' => $biaya_pendaftaran,
-            'approval' => 'Pending',
+            'approval' => 'pending',
             'approval_note' => '',
             'level_pendaftaran' => 1,
         ]);

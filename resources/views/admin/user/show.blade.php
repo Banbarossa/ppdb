@@ -84,7 +84,7 @@
                 <form action="{{route('admin.user-register.update',$data['user']->id)}}" method="post">
                     @method('patch')
                     @csrf
-                    <input type="hidden" name="approval" value="Ditolak">
+                    <input type="hidden" name="approval" value="ditolak">
                     <div class="form-floating">
                         <textarea class="form-control @error('approval_note') is-invalid @enderror" name="approval_note" placeholder="Alasan Penolakan" id="floatingTextarea2" style="height: 100px"></textarea>
                         <label for="floatingTextarea2">Alasan Penolakan Pendaftaran</label>
@@ -111,7 +111,6 @@
 </x-user-content>
 
 @push('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 @if (count($errors) > 0)
     <script>

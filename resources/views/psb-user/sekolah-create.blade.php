@@ -36,7 +36,7 @@
                         </div>
 
 
-                        <div class="form-group mt-3">
+                        <div class="form-group mt-3" id="confirmarea">
                             <input type="checkbox" id="myCheckbox" class="me-3"/>
                             <label for="myCheckbox">Setelah "Submit", data akan terkunci dan tidak dapat diedit lagi.</label>
                         </div>
@@ -60,13 +60,15 @@
 </x-user-content>
 
 @push('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 <script>
     $(document).ready(function(){
         const $checkbox = $("#myCheckbox")
         const $submitButton = $("#submitButton")
+        const formElements= $('.form-control,.form-select');
+        const confirm = $('#confirm');
 
         if ($checkbox.is(":checked")){
                 $submitButton.prop("disabled",false)
@@ -83,6 +85,24 @@
             }
             // $submitButton.prop("disabled",!$checkbox.is(":checked"))
         });
+
+        function disableFormElements(){
+            formElements.attr('disabled','disabled');
+            submitButton.hide();
+        }
+
+        function enableFormElements(){
+            formElements.removeAttr('disabled')
+            submitButton.show()
+            editButton.hide();
+        }
+
+        const isDisable = {{auth()->user()->level_pendaftaran >= 4 ? 'true':'false'}}
+        if(isDisable){
+            disableFormElements();
+        }else{
+            enableFormElements();
+        }
     })
 </script>
 

@@ -91,7 +91,7 @@
 
 {{-- Modal --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Tahun</h1>
@@ -101,13 +101,13 @@
           <form action="{{route('admin.tahun.store')}}" method="post">
             @csrf
             <div class="form-group mb-3">
-                <label class="form-label" for="tahun">tahun</label>
-                <input type="text" class="form-control form-control-lg @error('tahun') is-invalid @enderror" name="tahun" id="tahun" value="{{ ucfirst($data['siswa']->tahun) }}" disabled />
+                <label class="form-label" for="tahun">Tahun</label>
+                <input type="text" class="form-control form-control-lg @error('tahun') is-invalid @enderror" name="tahun" id="tahun" value="{{old('tahun')}}"/>
                 <x-input-error :messages="$errors->get('tahun')" class="mt-2"/>
             </div>
             <div>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="Sumbit" class="btn btn-primary">Tambah Data</button>
+                <button type="submit" class="btn btn-primary">Tambah Data</button>
             </div>
           </form>
         </div>
@@ -118,5 +118,21 @@
     </div>
 </div>
 
+
+@push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#tahun').mask("9999/9999");
+    })
+</script>
+@if (count($errors)>0)
+    <script>
+        $(document).ready(function(){
+            $('#exampleModal').modal('show');
+        })
+    </script>
+@endif
+@endpush
 
 @endsection

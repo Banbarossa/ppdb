@@ -3,6 +3,65 @@
 
 
 <x-user-content>
+    <div class="row">
+        @foreach ($user as $status => $item)
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border border-4 border-{{$item['color']}} border-bottom-0 border-top-0 border-end-0 shadow py-2 px-3">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 d-flex justify-content-between">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                <div>
+                                    <a href="{{$item['url']}}" class="text-decoration-none fw-bold text-{{$item['color']}} d-flex align-items-center fs-4">{{$status}}<i class="align-middle ms-3" data-feather="arrow-up-right"></i> </a>
+                                </div>
+                                <div>
+                                    <div class="h1 mb-0 mr-3 fw-bolder text-{{$item['color']}}">{{$item['data']->count()}}</div>
+                                </div>
+                            </div>
+                            <div class="row no-gutters align-items-center position-relative">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="30" height="30"><path d="M12,16a4,4,0,1,1,4-4A4,4,0,0,1,12,16Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,12,10Zm6,13A6,6,0,0,0,6,23a1,1,0,0,0,2,0,4,4,0,0,1,8,0,1,1,0,0,0,2,0ZM18,8a4,4,0,1,1,4-4A4,4,0,0,1,18,8Zm0-6a2,2,0,1,0,2,2A2,2,0,0,0,18,2Zm6,13a6.006,6.006,0,0,0-6-6,1,1,0,0,0,0,2,4,4,0,0,1,4,4,1,1,0,0,0,2,0ZM6,8a4,4,0,1,1,4-4A4,4,0,0,1,6,8ZM6,2A2,2,0,1,0,8,4,2,2,0,0,0,6,2ZM2,15a4,4,0,0,1,4-4A1,1,0,0,0,6,9a6.006,6.006,0,0,0-6,6,1,1,0,0,0,2,0Z"/></svg>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        
+        {{-- <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border border-4 border-primary border-bottom-0 border-top-0 border-end-0 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="#" class="text-decoration-none fw-bold">djfaljdla</a>
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $user['pending']->count() }}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-primary" role="progressbar"
+                                            style="width:{{$user['pending']->count()}}%" aria-valuenow="50" aria-valuemin="0"
+                                            aria-valuemax="200"></div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">200</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+    </div>
 
     <div class="row mt-5">
         <div class="col-lg-8">
@@ -16,6 +75,7 @@
             </div>
         </div>
     </div>
+
 
 
 </x-user-content>

@@ -4,7 +4,7 @@
 
 <x-user-content>
     <div class="mb-3">
-        <h1 class="h3 d-inline align-middle">{{$data['title']}}</h1>
+        <h1 class="h3 d-inline align-middle">{{$title}}</h1>
     </div>
 
     <div class="row">
@@ -16,18 +16,8 @@
                     
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4">
-                            <form action="{{ route('admin.user-register.index') }}" method="get">
-                                <div class="input-group mb-3">
-                                    <input type="text" name="query" value="" class="form-control" placeholder="search...." aria-label="search...." aria-describedby="button-addon2">
-                                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Search</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <div class="table-responsive">
-                        <table class="table table-sm" id="">
+                        <table class="table table-sm" id="myTable">
                             <thead class="table-dark">
                                 <tr>
                                     <th>No</th>
@@ -37,39 +27,9 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            
-                            <tbody id="itemList">
-                                @if (count($data)>0)
-                                    @foreach ($data as $key=>$item)
-                                    <tr>
-                                        <td>{{ ++$key}}</td>
-                                        <td>{{ ucFirst($item->nama)}}</td>
-                                        <td>{{ $item->no_pendaftaran}}</td>
-                                        <td>
-                                            @if ($item->user->level_pendaftaran == 4)
-                                                <span class="text-success">Lengkap</span>
-                                            @else                                              
-                                                <span class="text-warning">Belum Lengkap</span>                                                
-                                            @endif
-                                        </td>
-                                        
-                                        <td><a href="{{route('admin.siswa-baru.show',$item->id)}}" class="btn btn-secondary">Detail</a></td>
-                                    </tr>
-                                    @endforeach
-                                @else
-                                <tr>
-                                    <td colspan="6"><h5> Data Tidak ditemukan</h5></td>
-                                </tr>
-                                
-                            </tbody>
-                            @endif
-                          
+
                         </table>
 
-                        @if (count($data)>0)
-                            {{$data->links()}}
-                            
-                        @endif
                     </div>
                     
                     <div class="flex justify-content-between">
@@ -84,10 +44,50 @@
 
 </x-user-content>
 
-{{-- @push('script') --}}
-{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+@push('style')
+<link rel="stylesheet" href="{{asset('dataTables/dataTable.css')}}">
+    
+@endpush
+
+@push('script')
+<script src="{{asset('dataTables/dataTable.js')}}"></script>
+<script>
+    $(document).ready(function(){
+        $('#myTable').DataTable({
+
+            responsive: true,
+            processing:true,
+            serverSide:true,
+            ajax:"{{route('admin.siswa-baru.index')}}",
+            columns:[
+                { data: 'DT_RowIndex', name: 'DT_RowIndex',orderable:false, sortable:false},
+                {
+                    data:'nama',
+                    name:'nama',
+                    render: function(data) {
+                        return data.charAt(0).toUpperCase() + data.slice(1);
+                    }
+                },
+                {data:'no_pendaftaran',name:'no_pendaftaran'},
+                {
+                    data:'status',
+                    name:'status',
+                    render: function(data){
+                        if(data == 4){
+                            return "<span class='text-success'>Lengkap</span>";
+                        }else{
+                            return "<span class='text-warning'>Belum Lengkap</span>";
+                        }
+                    }
+                },
+                {data:'action',name:'action',sortable:false},
+                
+            ]
+        });
+    })
+</script>
 
     
-{{-- @endpush --}}
+@endpush
 
 @endsection

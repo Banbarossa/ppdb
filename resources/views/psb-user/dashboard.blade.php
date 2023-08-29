@@ -3,23 +3,6 @@
 @push('style')
     <style>
        
-       * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Roboto", sans-serif;
-            widht: 100vw;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            justify-content: center;
-            background: #458cb5;
-        }
 
         .stepper-container {
             width: 90%;
@@ -118,42 +101,57 @@
         1=>[
             'nama'=>'Pendaftaran Akun',
             'url'=>'psb/dashboard',
+            'color'=>'primary',
             ],
         2=>[
             'nama'=>'Data Siswa',
             'url'=>'/psb/profile',
+            'color'=>'success',
             ],
         3=>[
             'nama'=>'Data Orang Tua',
             'url'=>'/psb/wali',
+            'color'=>'info',
             ],
         4=>[
             'nama'=>'Data Sekolah',
             'url'=>'/psb/sekolah',
+            'color'=>'warning',
             ],
         ]
     @endphp
+
+
     <div class="row">
-        <div class="stepper-container">
-            @foreach ($status as $key=> $item)
-            <a href="{{$item['url']}}" class="text-decoration-none">
-                <div class="step">
-                    <div class="status d-flex align-items-center justify-content-center {{$key <= auth()->user()->level_pendaftaran ?'complete':''}}">
-                        @if ($key <= auth()->user()->level_pendaftaran)
-                            <i class="align-middle" data-feather="check"></i>
-                        @else
-                            <i class="align-middle" data-feather="x"></i>
-                        @endif
-                        
-                    </div>
-                    <div class="text-container">
-                        <span class="title">Step {{$key}}</span>
-                        <span class="subtitle">{{$item['nama']}}</span>
+        @foreach ($status as $key=> $item)
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border border-4 border-{{$item['color']}} border-bottom-0 border-top-0 border-end-0 shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{{$item['url']}}" class="text-decoration-none fw-bold">{{$item['nama']}}</a>
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$key <= auth()->user()->level_pendaftaran ?'100%':'0%'}}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="progress progress-sm mr-2">
+                                        <div class="progress-bar bg-{{$item['color']}}" role="progressbar"
+                                            style="{{$key <= auth()->user()->level_pendaftaran ?'width : 100%':'width:0%'}}" aria-valuenow="50" aria-valuemin="0"
+                                            aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        </div>
                     </div>
                 </div>
-            </a>
-            @endforeach             
+            </div>
         </div>
+        @endforeach
     </div>
     <div class="row mt-5">
         <div class="col-lg-8">
@@ -166,6 +164,27 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="fw-bold text-muted">Nomor Ujian Santri</h4>                    
+                </div>
+                <div class="card-body">
+                    <div>
+                        <ul>
+                            <li>Nama: <span class="fw-bold">{{ucFirst($data->nama)}}</span></li>
+                            <li>No Pendaftaran: {{$data->no_pendaftaran}}</li>
+                        </ul>
+                    </div>                    
+                </div>
+                <div class="card-footer">
+                    @if (auth()->user()->level_pendaftaran == 4)
+                        <a href="{{route('psb.kartuujian.index')}}" class="btn btn-secondary">Unduh Kartu Ujian</a>                        
+                    @endif
+                </div>
+            </div>
+        </div>
+
     </div>
 
 

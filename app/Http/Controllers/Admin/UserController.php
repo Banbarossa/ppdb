@@ -8,6 +8,7 @@ use App\Models\Tahun;
 use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
+use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
 {
@@ -17,15 +18,28 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $tahun = Tahun::where('status', 'aktif')->first();
-        $data['user'] = User::where('tahun_id', $tahun->id)
-            ->orderBy('created_at', 'desc')->paginate(15);
-        $data['title'] = 'List Pendaftaran Santri baru';
-        $query = $request->input('query');
-        if ($query) {
-            $data['user'] = User::search($query, $tahun);
+        $data = User::where('tahun_id', $tahun->id)
+            ->orderBy('created_at', 'desc')->get();
+        $title = 'List Pendaftaran Santri baru';
+
+        if ($request->ajax()) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $showRoute = route('admin.user-register.show', $data->id);
+                    return view('components.action-button', [
+                        'showRoute' => $showRoute,
+                    ]);
+                })
+                ->toJson();
         }
 
-        return view('admin.user.index', ['data' => $data, 'query' => $query]);
+        // $query = $request->input('query');
+        // if ($query) {
+        //     $data['user'] = User::search($query, $tahun);
+        // }
+
+        return view('admin.user.index', ['title' => $title, 'data' => $data]);
     }
 
     /**

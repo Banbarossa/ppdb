@@ -47,8 +47,8 @@
             <h2 class="section-title text-center">Jalur Pendaftaran</h2>
             <div class="row">
                 @foreach($model as $item)
-                    <div class="col-12 col-md-4">
-                        <div class="card px-3 shadow-md pb-4">
+                    <div class="col-12 col-lg-4 col-md-6">
+                        <div class="card px-3 shadow-md pb-4" style="height: 400px">
                             <div class="card-header border-bottom pt-4 bg-tertiary">
                                 <div class="d-flex gap-2 align-items-centers">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -66,9 +66,11 @@
                                 </p>
                             </div>
                             <div class="card-body">
+                                <div style="height:80px" class="overflow-y-auto mt-4">
+                                    <p class="card-text">{!!$item->meta_description!!}</p>
 
-                                <p class="card-text">{!!$item->deskripsi!!}</p>
-                                <p class="mt-3 text-muted">Biaya Pendaftaran : <span class="fw-bold text-primary">Rp
+                                </div>
+                                <p class="mt-4 text-muted">Biaya Pendaftaran : <span class="fw-bold text-primary">Rp
                                         {{ number_format($item->biaya_pendaftaran,0,',','.') }}</span>
                                 </p>
 
@@ -82,6 +84,8 @@
                                 @else
                                     <button class="btn btn-danger">Jalur ini Sudah Tutup</button>
                                 @endif
+
+                                <a href="{{route('post.welcome',$item->id)}}" class="btn btn-secondary">Lihat Detail</a>
 
                             </div>
                         </div>
@@ -127,6 +131,23 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="footer" class="py-5 bg-maroon" style="background: maroon">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="/"class="link-body-emphasis text-decoration-none text-center">
+                        <img src="{{ asset('images/logo.png') }}" alt=""
+                            style="width: 50px;height:50px">
+                        <div class="fs-2 fw-bold ms-3 mt-3 text-white">Pesantren Imam Syafi'i</div>
+                    </a>
+                </div>
+                <div class="col-12 mt-4 text-center">
+                    <p class="text-success">&copy; {{ date('Y') }}Hak Cipta Dilindungi.</p>
+                    
                 </div>
             </div>
         </div>

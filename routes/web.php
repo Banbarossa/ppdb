@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PsbUser\DaftarUlangController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/{id}', [WelcomeController::class, 'show'])->name('post.welcome');
 
 require __DIR__ . '/user_auth.php';
 
@@ -48,3 +50,10 @@ route::get('/gambar/{name}', function (String $name) {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+// ini  nanti di bwah ke psb-section
+Route::get('/unduh', [DaftarUlangController::class, 'unduhFormulir'])->name('unduh');
+
+Route::get('post', function () {
+    return view('post');
+});

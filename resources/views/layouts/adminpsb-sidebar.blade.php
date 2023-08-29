@@ -6,7 +6,7 @@
 
         <ul class="sidebar-nav">
             <li class="sidebar-header">
-                Pages
+                Pendaftaran
             </li>
 
             <li class="sidebar-item {{request()->routeIs('admin.dashboard')?'active':''}}">
@@ -21,14 +21,33 @@
                     <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Pendaftaran</span>
                 </a>
             </li>
+            <li class="sidebar-header">
+                Approved
+            </li>
             <li class="sidebar-item {{request()->is('admin/siswa-baru*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.siswa-baru.index')}}">
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Santri baru</span>
                 </a>
             </li>
+            @php
+                $jenjang=\App\Models\Jenjang::all();
+                
+            @endphp
+
+            <div x-data="{ open: false }">
+                <li class="sidebar-item d-grid {{request()->is('admin/siswa-jenjang*') ? 'active' : ''}}">
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="square"></i> Jenjang</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                </li>
+                <div class="ps-4" x-show="open">
+                    @foreach ($jenjang as $item)
+                        <a class="collapse-item sidebar-link" href="/admin/siswa-jenjang/{{$item->id}}">{{$item->nama_jenjang}}</a>
+                    @endforeach
+                </div>
+            </div>
+            
 
             <li class="sidebar-header">
-                Pages
+                Pengaturan
             </li>
 
             <li class="sidebar-item {{request()->is('admin/tahun*')?'active':''}}">
@@ -36,32 +55,36 @@
                     <i class="align-middle" data-feather="square"></i> <span class="align-middle">Tahun</span>
                 </a>
             </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-forms.html">
-                    <i class="align-middle" data-feather="check-square"></i> <span
-                        class="align-middle">Forms</span>
+            <li class="sidebar-item {{request()->is('admin/jalur-pendaftaran*')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.jalur-pendaftaran.index')}}">
+                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Jalur Pendaftaran</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{request()->is('admin/jenjang*')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.jenjang.index')}}">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Jenjang Pendidikan</span>
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-cards.html">
-                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
-                </a>
+
+            <li class="sidebar-header">
+                dropdown
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="ui-typography.html">
-                    <i class="align-middle" data-feather="align-left"></i> <span
-                        class="align-middle">Typography</span>
-                </a>
-            </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="icons-feather.html">
-                    <i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
-                </a>
-            </li>
+            <div x-data="{ open: false }">
+                <li class="sidebar-item d-grid">
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span>collapse</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                </li>
+                <div class="ps-2" x-show="open">
+                    <a class="collapse-item sidebar-link" href="utilities-color.html">Colors</a>
+                    <a class="collapse-item sidebar-link" href="utilities-border.html">Borders</a>
+                    <a class="collapse-item sidebar-link" href="utilities-animation.html">Animations</a>
+                    <a class="collapse-item sidebar-link" href="utilities-other.html">Other</a>
+                </div>
+            </div>
+
+
 
             <li class="sidebar-header">
                 Plugins & Addons

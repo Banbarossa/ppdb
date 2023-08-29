@@ -41,7 +41,17 @@ class TahunController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tahun' => 'required|min:9',
+        ]);
+
+        Tahun::create([
+            'tahun' => $request->tahun,
+            'status' => 'tidak aktif',
+        ]);
+
+        Alert::success('Success', 'Data berhasil ditambahkan');
+        return redirect()->back();
     }
 
     /**

@@ -12,4 +12,9 @@ class Jenjang extends Model
 
     protected $guarded = ['id'];
     use HasUuids;
+
+    public function newStudents()
+    {
+        return $this->hasMany(NewStudent::class, 'jenjang');
+    }
 }

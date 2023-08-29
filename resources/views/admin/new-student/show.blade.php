@@ -4,7 +4,7 @@
 
 <x-user-content>
     <div class="mb-3">
-        <h1 class="h3 d-inline align-middle">{{$data['title']}}</h1>
+        <h1 class="h3 d-inline align-middle">{{$title}}</h1>
     </div>
 
     <div class="row">
@@ -167,20 +167,5 @@
       </div>
 
 </x-user-content>
-
-@push('script')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-@if (count($errors) > 0)
-    <script>
-        $(document).ready(function() {
-            $('#exampleModal').modal('show');
-        });
-    </script>
-@endif
-
-
-    
-@endpush
 
 @endsection

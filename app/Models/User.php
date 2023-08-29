@@ -55,9 +55,4 @@ class User extends Authenticatable
         return $this->belongsTo(Tahun::class);
     }
 
-    public static function search($query, $tahun)
-    {
-        return self::where('id', $tahun->id)
-            ->where('name', 'LIKE', '%' . $query . '%')->paginate();
-    }
 }

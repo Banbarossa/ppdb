@@ -84,7 +84,7 @@
                                             id="resi" name="resi">
                                         <x-input-error :messages="$errors->get('resi')" class="mt-2" />
                                         <img id="previewImage" src="#" alt="Preview Image"
-                                            style="display: none; width:200pt;">
+                                            style="display: none; width:200pt;" class="mt-2">
                                     </div>
 
                                     <div class="d-grid gap-2 mt-3">
@@ -163,7 +163,7 @@
 
     </script>
 
-    {{-- <script src="{{asset('bootstrap/bootstrap.bundle.min.js')}}"></script> --}}
+
 
 @endpush
 
