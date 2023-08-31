@@ -18,6 +18,7 @@ class ProfileController extends Controller
 
     public function index()
     {
+        // return view('psb-user.pendaftaran-wizard');
         $data['siswa'] = NewStudent::where('user_id', auth()->user()->id)->first();
         $data['agama'] = $this->getAgama();
         $data['golongan_darah'] = $this->getGolonganDarah();
