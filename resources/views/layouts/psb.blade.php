@@ -18,7 +18,7 @@
     @stack('style')
     <link rel="stylesheet" href="{{ asset('bootstrap/bootstrap.min.css') }}">
     <link href="{{ asset('admin_kit/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
    
 
@@ -29,10 +29,11 @@
         @php
             $getPrefix = request()->route()->getPrefix();
         @endphp
+
         
-        @if ($getPrefix === 'psb')
+        @if ($getPrefix == 'psb')
             @include('layouts.psb-sidebar')
-        @elseif ($getPrefix === 'admin')
+        @elseif ($getPrefix == 'admin')
             @include('layouts.adminpsb-sidebar')
         @endif
 
@@ -52,12 +53,12 @@
     
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="{{ asset('bootstrap/bootstrap.bundle.min.js') }}"></script>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script> --}}
+    </script>
     <script src="{{asset('jquery/jquery.min.js')}}"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <script src="{{ asset('admin_kit/js/app.js') }}"></script>
+    <script src="{{asset('admin_kit/js/app.js')}}"></script>
     
 
     @stack('script')

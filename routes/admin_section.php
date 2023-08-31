@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ContactPsbController;
 use App\Http\Controllers\Admin\JalurMasukController;
 use App\Http\Controllers\Admin\jenjangController;
 use App\Http\Controllers\Admin\NewStudentController;
 use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TahunController;
 use Illuminate\Support\Facades\Route;
@@ -33,6 +35,9 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::get('siswa-jenjang/{id}', [NewStudentController::class, 'getJenjangPendidikan'])->name('siswa-baru.jenjang');
 
     Route::resource('jalur-pendaftaran', JalurMasukController::class);
+
+    Route::resource('contact-wa', PhoneController::class);
+    Route::resource('contact-media', ContactPsbController::class);
 
     Route::resource('jenjang', jenjangController::class);
 

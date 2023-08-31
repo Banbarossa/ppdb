@@ -65,6 +65,11 @@
                     <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Jenjang Pendidikan</span>
                 </a>
             </li>
+            <li class="sidebar-item {{request()->is('admin/contact-wa*')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.contact-wa.index')}}">
+                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Contact WA</span>
+                </a>
+            </li>
 
 
             <li class="sidebar-header">
