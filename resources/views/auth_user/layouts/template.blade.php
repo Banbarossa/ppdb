@@ -19,6 +19,8 @@
     <link href="{{ asset('admin_kit/css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     
 </head>
 
@@ -41,6 +43,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
     <script src="{{ asset('admin_kit/js/app.js') }}"></script>
+    <script src="{{asset('jquery/jquery.min.js')}}"></script>
 
     @stack('script')
 

@@ -17,13 +17,13 @@
     <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @livewireStyles
 </head>
 
 <body>
     {{-- navbar --}}
     @include('layouts.guest_navbar')
     {{-- navbar --}}
-
     {{-- hero section --}}
     <section class="hero-section min-vh-100">
         <div class="container text-center">
@@ -154,7 +154,7 @@
     </section>
 
 
-
+    @livewireScripts
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>

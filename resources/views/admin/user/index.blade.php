@@ -77,7 +77,7 @@
                     render:function($data){
                         if($data == 'approved'){
                             return '<span class="text-success"><i data-feather="check-circle" class="me-2"></i>Approved</span>'
-                        }else if($data == 'Pending'){
+                        }else if($data == 'pending'){
                             return '<span class="text-warning"><i data-feather="clock" class="me-2"></i>Pending</span>'
                         }else{
                             return '<span class="text-danger"><i data-feather="x-circle" class="me-2"></i>Ditolak</span>'

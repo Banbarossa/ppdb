@@ -39,9 +39,18 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
-                                        <input class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                        <div class="input-group">
+                                            <input type="password" class="form-control" id="password" name="password">
+                                            <div class="input-group-append">
+                                              <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">
+                                                <i class="fa fa-eye-slash"></i>
+                                              </button>
+                                            </div>
+                                        </div>
+                                        
+                                        {{-- <input class="form-control form-control-lg @error('email') is-invalid @enderror"
                                             type="
-                                            password" name="password" placeholder="Enter your password" />
+                                            password" name="password" placeholder="Enter your password" /> --}}
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
 
@@ -78,4 +87,24 @@
         </div>
     </div>
 </main>
+
+@push('script')
+<script>
+   $(document).ready(function() {
+  $("#showPasswordBtn").on("click", function() {
+    var passwordField = $("#password");
+    var passwordFieldType = passwordField.attr("type");
+    
+    if (passwordFieldType === "password") {
+      passwordField.attr("type", "text");
+      $(this).html('<i class="fa fa-eye"></i>');
+    } else {
+      passwordField.attr("type", "password");
+      $(this).html('<i class="fa fa-eye-slash"></i>');
+    }
+  });
+});
+    </script>
+    
+@endpush
 @endsection

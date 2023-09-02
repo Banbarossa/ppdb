@@ -65,7 +65,14 @@ class UserController extends Controller
     {
 
         $data['title'] = 'Detail Pendaftaran';
-        $data['user'] = User::findOrFail($id);
+
+        try {
+            $data['user'] = User::with('newStudents.jenjang')->where('id', $id)->first();
+        } catch (\Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        // $data['user'] = User::with('newStudents')->where('id', $id)->get;
         return view('admin.user.show', ['data' => $data]);
     }
 

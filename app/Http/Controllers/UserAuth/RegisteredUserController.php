@@ -86,7 +86,7 @@ class RegisteredUserController extends Controller
             'no_pendaftaran' => $no_pendaftaran,
             'tahun_id' => $tahun_id->id,
             'no_hp' => $no_hp,
-            'jenjang' => $request->jenjang,
+            'jenjang_id' => $request->jenjang,
             'jalur_masuk' => $jalur_masuk,
             'biaya_pendaftaran' => $biaya_pendaftaran,
         ]);

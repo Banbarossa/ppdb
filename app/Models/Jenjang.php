@@ -15,6 +15,6 @@ class Jenjang extends Model
 
     public function newStudents()
     {
-        return $this->hasMany(NewStudent::class, 'jenjang');
+        return $this->hasMany(NewStudent::class);
     }
 }

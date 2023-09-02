@@ -3,23 +3,24 @@
 
 
 <x-user-content>
-    <div class="mb-3">
+    {{-- <div class="mb-3">
         <h1 class="h3 d-inline align-middle">{{$data['title']}}</h1>
-    </div>
+    </div> --}}
 
     <div class="row">
         <div class="col-12">
             
-            <div class="card">
-                <div class="card-header">
-                   
-                    
+            <div class="card border border-4 border-secondary border-top-0 border-end-0 border-bottom-0">
+                <div class="card-header bg-secondary-subtle">
+                   <div class="card-title text-dark">
+                       Detail Registrasi Santri Baru
+                   </div>
                 </div>
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col-md-8 col-lg-5">
-                            <table class="table table-sm" id="">
+                            <table class="table table-sm table-borderless" id="">
                                 <tr>
                                     <th>Nama</th>
                                     <td><h4 class="fw-bold">{{$data['user']->name}}</h4></td>
@@ -37,8 +38,16 @@
                                     <td>{{number_format($data['user']->biaya_pendaftaran, 0, ',', '.')}}</td>
                                 </tr>               
                                 <tr>
+                                    <th>Jenjang</th>
+                                    @foreach ($data['user']->newStudents as $newStudent)
+                                    <td>{{$newStudent->jenjang->nama_jenjang}}</td>
+                                    {{-- <p>Jenjang: {{ $newStudent->jenjang }}</p> --}}
+                                    @endforeach
+                                    
+                                </tr>               
+                                <tr>
                                     <th>Status Pendataran</th>
-                                    <td>{{$data['user']->approval}}</td>
+                                    <td>{{ucFirst($data['user']->approval)}}</td>
                                 </tr>               
                                 <tr>
                                     <th>Resi</th>
@@ -46,7 +55,7 @@
                                     
                                 </tr>               
                             </table>
-                            @if ($data['user']->approval == 'Pending')
+                            @if ($data['user']->approval == 'pending')
                                 <div class="mt-3 d-flex gap-3">
                                     <form action="{{route('admin.user-register.update',$data['user']->id)}}" method="post">
                                         @method('patch')
