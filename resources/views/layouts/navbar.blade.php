@@ -163,16 +163,10 @@
                         alt="{{ Auth::user()->name }}" /> <span class="text-dark">{{ ucfirst(Auth::user()->name) }}</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="{{route('profile.edit')}}"><i class="align-middle me-1"
-                            data-feather="user"></i> Profile</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1"
-                            data-feather="pie-chart"></i> Analytics</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="index.html"><i class="align-middle me-1"
-                            data-feather="settings"></i> Settings & Privacy</a>
-                    <a class="dropdown-item" href="#"><i class="align-middle me-1"
-                            data-feather="help-circle"></i> Help Center</a>
-                    <div class="dropdown-divider"></div>
+
+                    <a class="dropdown-item" href="{{route('psb.user-profile.edit')}}"><i class="align-middle me-1"
+                        data-feather="user"></i> Profiles</a>
+
 
                     @php
                         $getPrefix = request()->route()->getPrefix();
@@ -198,4 +192,10 @@
             </li>
         </ul>
     </div>
+
+
+    
+
+
 </nav>
+

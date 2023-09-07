@@ -10,9 +10,28 @@
 
     <div class="row">
         @foreach($data as $item)
+        {{-- <div class="col-12 col-md-4 col-lg-4">
+            <div class="card">
+                <img src="{{asset('jalur/')}}/{{$item->image}}" class="card-img-top img-fluid" alt="..." style="height: 250px">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $item->nama_jalur }}</h5>
+                    <div class="card-text mb-4">
+                            {!!$item->meta_description!!}
+                    </div>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div> --}}
+        
+
+
         <div class="col-12 col-md-4">
-            <div class="card px-3 shadow-md pb-4" style="height: 430px">
+            <div class="card shadow-md pb-4">
+                <img src="{{asset('jalur/')}}/{{$item->image ?? 'default.png'}}" class="card-img-top" alt="{{$item->name}}">
+                
                 <div class="card-header border-bottom pt-4 bg-tertiary">
+                
+                    
                     <div class="d-flex gap-2 align-items-centers">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                             class="bi bi-calendar-week" viewBox="0 0 16 16">

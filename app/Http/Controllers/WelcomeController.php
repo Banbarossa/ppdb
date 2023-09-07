@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ContactPsb;
 use App\Models\JalurMasuk;
+use App\Models\PhonePsb;
 
 class WelcomeController extends Controller
 {
     public function index()
     {
-
         $model = JalurMasuk::where('status', true)->get();
-        return view('welcome', compact('model'));
+        $phone = PhonePsb::all();
+        $media = ContactPsb::all();
+
+        return view('welcome', [
+            'model' => $model,
+            'phone' => $phone,
+            'media' => $media,
+        ]);
     }
 
     public function show($id)
@@ -19,11 +27,15 @@ class WelcomeController extends Controller
         $data = JalurMasuk::findOrFail($id);
 
         $all = JalurMasuk::where('status', true)->get();
+        $phone = PhonePsb::all();
+        $media = ContactPsb::all();
         return view('post',
             [
                 'tanggalSekarang' => $tanggalSekarang,
                 'data' => $data,
                 'all' => $all,
+                'phone' => $phone,
+                'media' => $media,
             ]);
     }
 }

@@ -23,10 +23,8 @@ class jenjangController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
                     $editRoute = route('admin.jenjang.edit', $data->id);
-                    $editRoute = route('admin.jenjang.edit', $data->id);
                     $deleteRoute = route('admin.jenjang.destroy', $data->id);
                     return view('components.action-button', [
-                        'editRoute' => $editRoute,
                         'editRoute' => $editRoute,
                         'deleteRoute' => $deleteRoute,
                     ]);
@@ -41,7 +39,14 @@ class jenjangController extends Controller
      */
     public function create()
     {
-        //
+        $title = "Tambah Data Jenjang Pendidikan";
+        $data['model'] = new Jenjang();
+        $data['route'] = route('admin.jenjang.store');
+        $data['method'] = 'post';
+        return view('admin.jenjang.create', [
+            'title' => $title,
+            'data' => $data,
+        ]);
     }
 
     /**
@@ -71,8 +76,10 @@ class jenjangController extends Controller
     public function edit(string $id)
     {
         $title = "Edit Data Jenjang Pendidikan";
-        $data = Jenjang::findOrFail($id);
-        return view('admin.jenjang.edit', [
+        $data['model'] = Jenjang::findOrFail($id);
+        $data['route'] = route('admin.jenjang.update', $id);
+        $data['method'] = 'put';
+        return view('admin.jenjang.create', [
             'title' => $title,
             'data' => $data,
         ]);

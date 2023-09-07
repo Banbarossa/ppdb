@@ -112,19 +112,26 @@
 
                 <div class="col-md-5 col-lg-4">
                     <div class="card">
+                        <img src="{{asset('images/contact.jpg')}}" class="card-img-top" alt="contact">
                         <div class="card-body">
-                            <h2 class="section-title text-center">Contact Us</h2>
+                            <h5 class="card-title"><i class="bi bi-whatsapp me-3"></i>Contact Us</h5>
                             <div>
-                                <ul class="contact-list">
-                                    <li class="mb-2">
-                                        <a href="https://wa.me/6285161102525" class="fs-4 fw-bold d-flex gap-3" target="blank"><i class="bi bi-whatsapp"></i> 085161102525</a>
-                                    </li>
-                                    <li class="mb-2">
-                                        <a href="" class="fs-4 fw-bold d-flex gap-3" target="blank"><i class="bi bi-whatsapp"></i> 085161102525</a>
-                                    </li>
-                                    <li class="mb-2">
-                                        <a href="" class="fs-4 fw-bold d-flex gap-3" target="blank"><i class="bi bi-whatsapp"></i> 085161102525</a>
-                                    </li>
+                                <ul class="list-group list-group-flush">
+                                    @foreach ($phone as $item)
+                                        <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" class="me-4">+ {{$item->no_wa}}</a>{{$item->nama}} </li>
+                                    @endforeach
+                                    
+                                </ul>
+                            </div>
+
+                            <h5 class="card-title mt-4"><i class="bi bi-whatsapp me-3"></i>Email dan Media Sosial</h5>
+                            <div>
+                                <ul class="list-group list-group-flush">
+                                    @foreach ($media as $item)
+                                        <li class="list-group-item">
+                                            <a href="{{$item->url}}" class="me-4">{{$item->media}} : {{$item->alamat}}</a>
+                                        </li>
+                                    @endforeach
                                     
                                 </ul>
                             </div>

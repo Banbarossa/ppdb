@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProfileController as UserProfileController;
 use App\Http\Controllers\UserAuth\AuthenticatedSessionController;
 use App\Http\Controllers\UserAuth\ConfirmablePasswordController;
 use App\Http\Controllers\UserAuth\EmailVerificationNotificationController;
@@ -35,6 +36,12 @@ route::group(['middleware' => 'guest', 'prefix' => 'psb', 'as' => 'psb.'], funct
 
     Route::post('reset-password', [NewPasswordController::class, 'store'])
         ->name('password.store');
+});
+
+route::group(['middleware' => 'auth', 'prefix' => 'psb', 'as' => 'psb.'], function () {
+    Route::get('/user-profile', [UserProfileController::class, 'edit'])->name('user-profile.edit');
+    Route::patch('/user-profile', [UserProfileController::class, 'update'])->name('user-profile.update');
+    // Route::delete('/user-profile', [UserProfileController::class, 'destroy'])->name('user-profile.destroy');
 });
 
 Route::middleware('auth')->group(function () {

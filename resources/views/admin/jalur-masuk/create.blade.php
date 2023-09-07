@@ -6,18 +6,17 @@
     <div class="mb-3">
         <h1 class="h2 d-inline align-middle">{{$title}}</h1>
     </div>
-    <div class="row justify-content-start">
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header"></div>
-                <div class="card-body">
 
-                    <form action="{{$data['route']}}" method="post">
-                        @csrf
-                        @if ($data['method']=='put')
-                            @method('put')
-                        @endif
-                        
+    <form action="{{$data['route']}}" method="post" enctype="multipart/form-data">
+        @csrf
+        @if ($data['method']=='put')
+            @method('put')
+        @endif
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body"> 
                         <div class="form-group mb-3">
                             <label class="form-label" for="nama">Nama Jalur Pendaftaran</label>
                             <input type="text" class="form-control form-control-lg @error('nama_jalur') is-invalid @enderror" name="nama_jalur" id="nama_jalur" value="{{ old('nama_jalur') ?? $data['jalur']->nama_jalur }}"/>
@@ -59,22 +58,35 @@
                                 <small class="text-danger">{{$message}}</small>
                             @enderror
                         </div>
-                        
+
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="card">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="image" class="form-label">Gambar Sampul <small class="text-danger ms-3">Jpg/Jpeg/PNG max:1 mb</small></label>
+                            <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                id="image" name="image">
+                            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                            
+                        </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-                        
-                    </form>
+                    </div>
                 </div>
-                
+
+            
             </div>
+            
         </div>
-    </div>
+    </form>
 
 
-    
-
-   
 
 </x-user-content>
 

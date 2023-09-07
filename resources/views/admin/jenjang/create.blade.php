@@ -12,14 +12,16 @@
                 <div class="card-header"></div>
                 <div class="card-body">
 
-                    <form action="{{route('admin.jenjang.update',$data->id)}}" method="post">
+                    <form action="{{$data['route']}}" method="post">
                         @csrf
-                        @method('put')
+                        @if ($data['method'] == 'put')
+                            @method('put')                           
+                        @endif
                     
                      
                         <div class="form-group mb-3">
                             <label class="form-label" for="nama">Nama Jenjang</label>
-                            <input type="text" class="form-control form-control-lg @error('nama_jenjang') is-invalid @enderror" name="nama_jenjang" id="nama_jenjang" value="{{ old('nama_jenjang') ?? $data->nama_jenjang }}"/>
+                            <input type="text" class="form-control form-control-lg @error('nama_jenjang') is-invalid @enderror" name="nama_jenjang" id="nama_jenjang" value="{{ old('nama_jenjang') ?? $data['model']->nama_jenjang }}"/>
                             <x-input-error :messages="$errors->get('nama_jenjang')" class="mt-2"/>
                         </div>
 

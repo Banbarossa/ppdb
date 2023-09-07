@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ContactPsb;
+use App\Models\PhonePsb;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Yajra\DataTables\Facades\DataTables;
@@ -16,22 +17,42 @@ class ContactPsbController extends Controller
     public function index(Request $request)
     {
         $data = ContactPsb::get();
+        return view('admin.contact.index', [
+            'title' => 'Contact Panitia',
+            'data' => $data,
+        ]);
+    }
+
+    public function getWa(Request $request)
+    {
+        $data = PhonePsb::all();
+
         if ($request->ajax()) {
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($data) {
-                    $editRoute = route('admin.contact-media.edit', $data->id);
-                    return view('components.action-button', [
-                        'editRoute' => $editRoute,
-                    ]);
+                    $editRoute = route('admin.phone.edit', $data->id);
+                    $deleteRoute = route('admin.phone.destroy', $data->id);
+                    return view('components.action-button', ['editRoute' => $editRoute, 'deleteRoute' => $deleteRoute]);
                 })
-                ->make(true);
+                ->toJson();
         }
+    }
 
-        return view('admin.media.index', [
-            'title' => 'Contact Panitia',
-            'data' => $data,
-        ]);
+    public function getMedia(Request $request)
+    {
+        $data = ContactPsb::all();
+
+        if ($request->ajax()) {
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($data) {
+                    $editRoute = route('admin.contact.edit', $data->id);
+                    $deleteRoute = route('admin.contact.destroy', $data->id);
+                    return view('components.action-button', ['editRoute' => $editRoute, 'deleteRoute' => $deleteRoute]);
+                })
+                ->toJson();
+        }
     }
 
     /**
@@ -40,10 +61,10 @@ class ContactPsbController extends Controller
     public function create()
     {
         $data['jalur'] = new ContactPsb();
-        $data['route'] = route('admin.contact-media.store');
+        $data['route'] = route('admin.contact.store');
         $data['method'] = 'post';
         $title = "Tambah Contact";
-        return view('admin.media.create', ['title' => $title, 'data' => $data]);
+        return view('admin.contact.media-create', ['title' => $title, 'data' => $data]);
     }
 
     /**
@@ -51,7 +72,19 @@ class ContactPsbController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        $request->validate([
+            'media' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        ContactPsb::create([
+            'media' => $request->media,
+            'alamat' => $request->alamat,
+            'url' => $request->url,
+        ]);
+        Alert::success('success', 'Data Berhasil ditambahkan');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -79,7 +112,18 @@ class ContactPsbController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request->all());
+        $request->validate([
+            'media' => 'required',
+            'alamat' => 'required',
+        ]);
+
+        ContactPsb::findOrFail($id)->update([
+            'media' => $request->media,
+            'alamat' => $request->alamat,
+            'url' => $request->url,
+        ]);
+        Alert::success('success', 'Data Berhasil diubah');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -88,7 +132,7 @@ class ContactPsbController extends Controller
     public function destroy(string $id)
     {
         ContactPsb::findOrfail($id)->delete();
-        Alert::success('success', 'Data Berhasil ditambahkan');
-        return redirect()->route('admin.contact-media.index');
+        Alert::success('success', 'Data Berhasil dihapus');
+        return redirect()->route('admin.contact.index');
     }
 }

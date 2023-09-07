@@ -43,7 +43,7 @@
                             {{-- aktifkan --}}
                             <div class="form-group mb-3">
                                 <label class="form-label" for="nisn">NISN</label>
-                                <input type="text" wire:model="nisn" class="form-control form-control-lg @error('nisn') is-invalid @enderror" id="nisn" placeholder="Masukkan NISN Siswa" />
+                                <input type="number" wire:model="nisn" class="form-control form-control-lg @error('nisn') is-invalid @enderror" id="nisn" placeholder="Masukkan NISN Siswa" />
                                 <x-input-error :messages="$errors->get('nisn')" class="mt-2"/>
                             </div>
                 
@@ -100,11 +100,10 @@
                             
                         </div>
 
-                        <div class="d-flex justify-content-between">
-                            <div>
-                                <button type="button" wire:click="firstStepSubmit" id="submitButton" class="btn btn-primary px-4">Selanjutnya</button>
-                            </div>
+                        <div class="d-flex justify-contents-end">
+                            <button type="button" wire:click="firstStepSubmit" id="submitButton" class="btn btn-primary px-4 ms-auto">Selanjutnya</button>
                         </div>
+
                         
                     
 
@@ -163,14 +162,14 @@
                             <div>
                                 <button type="button" wire:click="decreaseStep" id="submitButton" class="btn btn-primary px-4">Sebelumnya</button>
                             </div>
-                            <div class="ms-auto {{$current_step == 3 ?'d-none':''}}">
-                                <button type="button" wire:click="firstStepSubmit" id="submitButton" class="btn btn-primary px-4">Selanjutnya</button>
+                            <div>
+                                <button type="button" wire:click="secondStepSubmit" id="submitButton" class="btn btn-primary px-4">Selanjutnya</button>
                             </div>
-                            @if ($current_step == 3)
+                            {{-- @if ($current_step == 3)
                                 <div >
-                                    <button type="button" wire:click="addStep" id="submitButton" class="btn btn-success px-4">Kirim Data</button>
+                                    <button type="button" wire:click="secondStepSubmit" id="submitButton" class="btn btn-success px-4">Kirim Data</button>
                                 </div>
-                            @endif
+                            @endif --}}
                         </div>
                         
                     </div>
@@ -179,7 +178,7 @@
                         <div class="col-12 col-lg-7">
                             <div class="form-group mb-4">
                                 <label class="form-label" for="sekolah_sebelumnya">Nama Sekolah</label>
-                                <input type="text" class="form-control form-control-lg @error('sekolah_sebelumnya') is-invalid @enderror" name="sekolah_sebelumnya" id="sekolah_sebelumnya" placeholder="Nama Sekolah Sebelumnya" />
+                                <input type="text" class="form-control form-control-lg @error('sekolah_sebelumnya') is-invalid @enderror" wire:model="sekolah_sebelumnya" id="sekolah_sebelumnya" placeholder="Nama Sekolah Sebelumnya" />
                                 <x-input-error :messages="$errors->get('sekolah_sebelumnya')" class="mt-2"/>
                             </div>
     
@@ -187,10 +186,18 @@
     
                             <div class="form-group mb-4">
                                 <label class="form-label" for="npsn_sekolah_sebelumnya">NPSN Sekolah <span class="ms-3"><small class="text-danger">Anda dapat mencari npsn Sekolah</small></span> <span><a href="https://referensi.data.kemdikbud.go.id/" target="_blank" class="badge bg-success">disini</a></span></label>
-                                <input type="number" class="form-control form-control-lg @error('npsn_sekolah_sebelumnya') is-invalid @enderror" name="npsn_sekolah_sebelumnya" id="npsn_sekolah_sebelumnya"  placeholder="NPSN Sekolah Sebelumnya" />
+                                <input type="number" class="form-control form-control-lg @error('npsn_sekolah_sebelumnya') is-invalid @enderror" wire:model="npsn_sekolah_sebelumnya" id="npsn_sekolah_sebelumnya"  placeholder="NPSN Sekolah Sebelumnya" />
                                 <x-input-error :messages="$errors->get('npsn_sekolah_sebelumnya')" class="mt-2"/>
                             </div>
+
     
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-end">
+                                    <button type="button" wire:click="storeData" id="submitButton" class="btn btn-success px-4">Kirim Data</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -222,6 +229,7 @@
     <script>
         $('#no_hp_ayah').mask('+62 000-0000-0000')
         $('#no_hp_ibu').mask('+62 000-0000-0000')
+        $('#nisn').mask('9999999999')
 
 
 

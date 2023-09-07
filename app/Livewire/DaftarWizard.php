@@ -53,6 +53,7 @@ class DaftarWizard extends Component
 
     public function secondStepSubmit()
     {
+
         $validatedData = $this->validate([
             'nama_ayah' => 'required',
             'pekerjaan_ayah' => 'required',

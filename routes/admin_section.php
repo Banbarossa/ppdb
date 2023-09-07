@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\NewStudentController;
 use App\Http\Controllers\Admin\PendaftarController;
 use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\KelulusanSantriBaruController;
 use App\Http\Controllers\TahunController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,15 +30,21 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::resource('user-register', UserController::class);
     Route::get('registration-status/{status}', [PendaftarController::class, 'getPending'])->name('pending.pendaftar');
     Route::resource('tahun', TahunController::class);
+    Route::get('activasi-tahun/{id}', [TahunController::class, 'aktifasiTahun'])->name('activasi-tahun');
 
     Route::get('siswa-baru', [NewStudentController::class, 'index'])->name('siswa-baru.index');
-    Route::get('siswa-baru/{id}', [NewStudentController::class, 'show'])->name('siswa-baru.show');
+    Route::get('show-siswa/{id}', [NewStudentController::class, 'show'])->name('siswa-baru.show');
     Route::get('siswa-jenjang/{id}', [NewStudentController::class, 'getJenjangPendidikan'])->name('siswa-baru.jenjang');
+    Route::get('kelulusan/{id}', [KelulusanSantriBaruController::class, 'index'])->name('kelulusan.index');
+    Route::post('kelulusan', [KelulusanSantriBaruController::class, 'luluskan'])->name('kelulusan.luluskan');
+    Route::get('kelulusan/{id}/approve', [KelulusanSantriBaruController::class, 'luluskanSatu'])->name('kelulusan.satu');
 
     Route::resource('jalur-pendaftaran', JalurMasukController::class);
 
-    Route::resource('contact-wa', PhoneController::class);
-    Route::resource('contact-media', ContactPsbController::class);
+    Route::resource('contact', ContactPsbController::class)->except('show');
+    Route::resource('phone', PhoneController::class)->except(['index', 'show']);
+    Route::get('contact-wa', [ContactPsbController::class, 'getWa'])->name('get-wa');
+    Route::get('contact-media', [ContactPsbController::class, 'getMedia'])->name('get-media');
 
     Route::resource('jenjang', jenjangController::class);
 

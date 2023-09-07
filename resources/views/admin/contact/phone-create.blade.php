@@ -48,41 +48,14 @@
    
 
 </x-user-content>
-
-{{-- @push('style')
-<link rel="stylesheet" href="{{asset('dataTables/dataTable.css')}}">
+@push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+<script>
+    // masking no hp
+    $('#no_wa').mask('+62 000-0000-0000');
+</script>
     
 @endpush
-
-@push('script')
-<script src="{{asset('dataTables/dataTable.js')}}"></script>
-<script>
-    $(document).ready(function(){
-        $('#PhoneTable').DataTable({
-
-            responsive: true,
-            processing:true,
-            serverSide:true,
-            ajax:"{{route('admin.contact.index')}}",
-            columns:[
-                { data: 'DT_RowIndex', name: 'DT_RowIndex',orderable:false, sortable:false},
-                {
-                    data:'nama',
-                    name:'nama',
-                    render: function(data) {
-                        return data.charAt(0).toUpperCase() + data.slice(1);
-                    }
-                },
-            
-                {data:'no_wa',name:'no_wa',sortable:false},
-                
-            ]
-        });
-    })
-</script>
-
-    
-@endpush --}}
 
 
 @endsection

@@ -11,7 +11,8 @@ class KartuUjianController extends Controller
     public function index()
     {
 
-        $data = NewStudent::where('user_id', auth()->user()->id)->first();
+        $data = NewStudent::with('jenjang')->where('user_id', auth()->user()->id)->first();
+
         $pdf = Pdf::loadView('psb-user.kartuUjian', ['data' => $data]);
         return $pdf->download('kartu-ujian.pdf');
 

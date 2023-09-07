@@ -11,7 +11,7 @@ class DashboardController extends Controller
     {
 
         // dd(auth()->user()->id);
-        $data = NewStudent::where('user_id', auth()->user()->id)->first();
+        $data = NewStudent::with('jenjang')->where('user_id', auth()->user()->id)->first();
 
         return view('psb-user.dashboard', ['data' => $data]);
     }

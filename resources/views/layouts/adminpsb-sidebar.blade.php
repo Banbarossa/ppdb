@@ -26,7 +26,7 @@
             </li>
             <li class="sidebar-item {{request()->is('admin/siswa-baru*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.siswa-baru.index')}}">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Santri baru</span>
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Santri baru</span>
                 </a>
             </li>
             @php
@@ -36,12 +36,28 @@
 
             <div x-data="{ open: false }">
                 <li class="sidebar-item d-grid {{request()->is('admin/siswa-jenjang*') ? 'active' : ''}}">
-                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="square"></i> Jenjang</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="bar-chart"></i>Jenjang</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
                 </li>
                 <div class="ps-4" x-show="open">
                     @foreach ($jenjang as $item)
                         <a class="collapse-item sidebar-link" href="/admin/siswa-jenjang/{{$item->id}}">{{$item->nama_jenjang}}</a>
                     @endforeach
+                </div>
+            </div>
+
+            <li class="sidebar-header">
+                kelulusan
+            </li>
+            <div x-data="{ open: false }">
+                <li class="sidebar-item d-grid {{request()->is('admin/kelulusan*') ? 'active' : ''}}">
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="bar-chart"></i>Kelulusan</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                </li>
+                <div class="ps-4" x-show="open">
+                    @foreach ($jenjang as $item)
+                        <a class="collapse-item sidebar-link" href="{{route('admin.kelulusan.index',$item->id)}}">{{$item->nama_jenjang}}</a>
+                        
+                    @endforeach
+                
                 </div>
             </div>
             
@@ -52,71 +68,30 @@
 
             <li class="sidebar-item {{request()->is('admin/tahun*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.tahun.index')}}">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Tahun</span>
+                    <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Tahun</span>
                 </a>
             </li>
             <li class="sidebar-item {{request()->is('admin/jalur-pendaftaran*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.jalur-pendaftaran.index')}}">
-                    <i class="align-middle" data-feather="square"></i> <span class="align-middle">Jalur Pendaftaran</span>
+                    <i class="align-middle" data-feather="git-commit"></i> <span class="align-middle">Jalur Pendaftaran</span>
                 </a>
             </li>
             <li class="sidebar-item {{request()->is('admin/jenjang*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.jenjang.index')}}">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Jenjang Pendidikan</span>
-                </a>
-            </li>
-            <li class="sidebar-item {{request()->is('admin/contact-wa*')?'active':''}}">
-                <a class="sidebar-link" href="{{route('admin.contact-wa.index')}}">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Contact WA</span>
+                    <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Jenjang Pendidikan</span>
                 </a>
             </li>
 
 
-            <li class="sidebar-header">
-                dropdown
-            </li>
-
-
-            <div x-data="{ open: false }">
-                <li class="sidebar-item d-grid">
-                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span>collapse</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
-                </li>
-                <div class="ps-2" x-show="open">
-                    <a class="collapse-item sidebar-link" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item sidebar-link" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item sidebar-link" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item sidebar-link" href="utilities-other.html">Other</a>
-                </div>
-            </div>
-
-
-
-            <li class="sidebar-header">
-                Plugins & Addons
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="charts-chartjs.html">
-                    <i class="align-middle" data-feather="bar-chart-2"></i> <span
-                        class="align-middle">Charts</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="maps-google.html">
-                    <i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
-                </a>
-            </li>
         </ul>
 
         <div class="sidebar-cta">
             <div class="sidebar-cta-content">
-                <strong class="d-inline-block mb-2">Upgrade to Pro</strong>
-                <div class="mb-3 text-sm">
-                    Are you looking for more components? Check out our premium version.
+                <div class="mb-3 text-sm d-flex justify-content-center">
+                    <img src="{{asset('images/logo.png')}}" style="width: 50px" alt="">
                 </div>
                 <div class="d-grid">
-                    <a href="upgrade-to-pro.html" class="btn btn-primary">Upgrade to Pro</a>
+                    <a href="https://pis.sch.id" target="blank" class="btn btn-primary">Visit Us</a>
                 </div>
             </div>
         </div>

@@ -139,9 +139,8 @@
         // masking no hp
         $('#no_hp').mask('+62 000-0000-0000');
 
-        // preview resi
+
         $(document).ready(function () {
-            // Fungsi untuk menampilkan pratinjau gambar saat file dipilih
             $("#resi").change(function () {
                 readURL(this);
             });

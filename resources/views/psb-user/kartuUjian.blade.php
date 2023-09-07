@@ -94,6 +94,11 @@
                         <td>{{$data->jalur_masuk}}</td>
                     </tr>
                     <tr>
+                        <th>Jenjang Sekolah</th>
+                        <th>:</th>
+                        <td>{{$data->jenjang->nama_jenjang}}</td>
+                    </tr>
+                    <tr>
                         <th>Tempat, Tanggal Lahir</th>
                         <th>:</th>
                         <td>{{$data->tempat_lahir_siswa}}, {{$data->tanggal_lahir_siswa}}</td>

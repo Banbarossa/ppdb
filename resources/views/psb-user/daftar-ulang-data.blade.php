@@ -262,8 +262,8 @@
                         </div>
                         <div class="form-group mb-3">
                             <label class="form-label" for="alamat_orang_tua">Alamat Orang Tua</label>
-                            <textarea name="alamat_orang_tua" class="form-control @error('alamat_orang_tua') is-invalid @enderror" rows="3" placeholder="Alamat Siswa">{{ old('alamat_orang_tua') ?? $data['siswa']->	alamat_orang_tua }}</textarea>
-                            <x-input-error :messages="$errors->get('	alamat_orang_tua')" class="mt-2"/>
+                            <textarea name="alamat_orang_tua" class="form-control @error('alamat_orang_tua') is-invalid @enderror" rows="3" placeholder="Alamat Orang Tua">{{ old('alamat_orang_tua') ?? $data['siswa']->alamat_orang_tua }}</textarea>
+                            <x-input-error :messages="$errors->get('alamat_orang_tua')" class="mt-2"/>
                         </div>
 
                     </div>
@@ -299,7 +299,7 @@
                             <label class="form-label">No HP (+62)</label>
                             <input class="form-control form-control-lg @error('no_hp_wali') is-invalid @enderror"
                                 type="text" id="no_hp_wali" name="no_hp_wali"
-                                value="{{ old('no_hp_wali') }}"
+                                value="{{ old('no_hp_wali')?? $data['siswa']->no_hp_wali }}"
                                 placeholder="Enter your phone number" @unless($data['siswa']->no_hp_wali) data-mask="+62 000 0000 0000" @endunless />
                             <x-input-error :messages="$errors->get('no_hp_wali')" class="mt-2" />
                         </div>

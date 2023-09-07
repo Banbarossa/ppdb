@@ -96,93 +96,78 @@
 
 <x-user-content>
 
-    @php
-        $status=[
-        1=>[
-            'nama'=>'Pendaftaran Akun',
-            'url'=>'psb/dashboard',
-            'color'=>'primary',
-            ],
-        2=>[
-            'nama'=>'Data Siswa',
-            'url'=>'/psb/profile',
-            'color'=>'success',
-            ],
-        3=>[
-            'nama'=>'Data Orang Tua',
-            'url'=>'/psb/wali',
-            'color'=>'info',
-            ],
-        4=>[
-            'nama'=>'Data Sekolah',
-            'url'=>'/psb/sekolah',
-            'color'=>'warning',
-            ],
-        ]
-    @endphp
-
 
     <div class="row">
-        @foreach ($status as $key=> $item)
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border border-4 border-{{$item['color']}} border-bottom-0 border-top-0 border-end-0 shadow h-100 py-2">
+        <div class="col">
+            <div class="card border border-4 border-warning border-bottom-0 border-top-0 border-end-0">
                 <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="{{$item['url']}}" class="text-decoration-none fw-bold">{{$item['nama']}}</a>
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$key <= auth()->user()->level_pendaftaran ?'100%':'0%'}}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-{{$item['color']}}" role="progressbar"
-                                            style="{{$key <= auth()->user()->level_pendaftaran ?'width : 100%':'width:0%'}}" aria-valuenow="50" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+                    <img src="{{asset('images/welcome.jpg')}}" class="img-fluid" alt="">
+
                 </div>
             </div>
         </div>
-        @endforeach
     </div>
     <div class="row mt-5">
         <div class="col-lg-8">
-            <div class="card">
+            <div class="card border border-4 border-primary border-top-0 border-end-0 border-bottom-0 px-4">
                 <div class="card-header">
                     <h4 class="card-title">Informasi Pendaftaran</h4>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate consequatur nostrum ipsam magni quod deserunt ratione aspernatur laboriosam corrupti expedita.</p>
+                    @if (auth()->user()->level_pendaftaran < 4)
+                        @include('psb-user.notif-dashboard.level-2')
+                    @endif
+                    @if (auth()->user()->level_pendaftaran == 4)
+                        @include('psb-user.notif-dashboard.level-4')
+                    @endif
+                    @if (auth()->user()->level_pendaftaran == 5)
+                        @include('psb-user.notif-dashboard.level-5')
+                    @endif
+                    @if (auth()->user()->level_pendaftaran == 6)
+                        @include('psb-user.notif-dashboard.level-6')
+                    @endif
+                    @if (auth()->user()->level_pendaftaran == 7)
+                        @include('psb-user.notif-dashboard.level-7')
+                    @endif
                 </div>
             </div>
         </div>
         <div class="col-lg-4">
+
             <div class="card">
-                <div class="card-header">
-                    <h4 class="fw-bold text-muted">Nomor Ujian Santri</h4>                    
-                </div>
+                <img src="{{asset('images/psb.png')}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <div>
-                        <ul>
-                            <li>Nama: <span class="fw-bold">{{ucFirst($data->nama)}}</span></li>
-                            <li>No Pendaftaran: {{$data->no_pendaftaran}}</li>
-                        </ul>
-                    </div>                    
-                </div>
-                <div class="card-footer">
-                    @if (auth()->user()->level_pendaftaran == 4)
-                        <a href="{{route('psb.kartuujian.index')}}" class="btn btn-secondary">Unduh Kartu Ujian</a>                        
+                    <h5 class="card-title">Kartu Siswa</h5>
+                    <ul>
+                        <li>Nama: <span class="fw-bold">{{ucFirst($data->nama)}}</span></li>
+                        <li>No Pendaftaran: {{$data->no_pendaftaran}}</li>
+                        <li>No Pendaftaran: {{$data->jenjang->nama_jenjang}}</li>
+                    </ul>
+                    @if (auth()->user()->level_pendaftaran >= 4)
+                        <a href="{{route('psb.kartuujian.index')}}" class="btn btn-success">Unduh Kartu Ujian</a>
+                    @elseif (auth()->user()->level_pendaftaran < 4)  
+                        <p class="card-text">Silahkan mengisi pendaftaran secara lengkap untuk mengunduh kartu ujian.</p>
                     @endif
                 </div>
             </div>
+            <div class="card">
+                <img src="{{asset('images/contact.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">contact Us</h5>
+                    <ul>
+                        
+                    </ul>
+                    @if (auth()->user()->level_pendaftaran >= 4)
+                        <a href="{{route('psb.kartuujian.index')}}" class="btn btn-success">Unduh Kartu Ujian</a>
+                    @elseif (auth()->user()->level_pendaftaran < 4)  
+                        <p class="card-text">Silahkan mengisi pendaftaran secara lengkap untuk mengunduh kartu ujian.</p>
+                    @endif
+                </div>
+            </div>
+
+
+
+           
         </div>
 
     </div>

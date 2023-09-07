@@ -79,7 +79,7 @@
                     data:'status',
                     name:'status',
                     render: function(data){
-                        if(data == 4){
+                        if(data >= 4){
                             return "<span class='text-success'>Lengkap</span>";
                         }else{
                             return "<span class='text-warning'>Belum Lengkap</span>";

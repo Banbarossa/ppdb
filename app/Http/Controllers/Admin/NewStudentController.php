@@ -47,7 +47,7 @@ class NewStudentController extends Controller
     public function show($id)
     {
 
-        $data = NewStudent::whereHas('user', function ($query) {
+        $data = NewStudent::with('jenjang')->whereHas('user', function ($query) {
             $query->where('approval', 'approved');
         })
             ->where('id', $id)
@@ -66,7 +66,7 @@ class NewStudentController extends Controller
             $query->where('approval', 'approved');
         })
             ->where('tahun_id', $tahun_aktif)
-            ->where('jenjang', $id)
+            ->where('jenjang_id', $id)
             ->get();
 
         if ($request->ajax()) {

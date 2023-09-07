@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JalurMasukRequest;
 use App\Models\JalurMasuk;
+use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class JalurMasukController extends Controller
@@ -41,9 +42,27 @@ class JalurMasukController extends Controller
     public function store(JalurMasukRequest $request)
     {
 
-        JalurMasuk::create($request->all());
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:1024',
+        ]);
+
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+
+        $filePath = $image->move(public_path('jalur'), $request->nama_jalur . '.' . $extension);
+
+        JalurMasuk::create([
+            'nama_jalur' => $request->nama_jalur,
+            'biaya_pendaftaran' => $request->biaya_pendaftaran,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,
+            'meta_description' => $request->meta_description,
+            'deskripsi' => $request->deskripsi,
+            'image' => $request->nama_jalur . '.' . $extension,
+        ]);
         Alert::success('Success', 'Jalur Pendaftaran Berhasil Ditambahkan');
         return redirect()->route('admin.jalur-pendaftaran.index');
+
     }
 
     /**
@@ -64,6 +83,7 @@ class JalurMasukController extends Controller
      */
     public function edit(string $id)
     {
+
         $data['jalur'] = JalurMasuk::findOrFail($id);
         $data['route'] = route('admin.jalur-pendaftaran.update', $id);
         $data['method'] = 'put';
@@ -77,7 +97,30 @@ class JalurMasukController extends Controller
      */
     public function update(JalurMasukRequest $request, string $id)
     {
-        $data = JalurMasuk::findOrFail($id)->update($request->all());
+        $data = JalurMasuk::findOrFail($id);
+        $file = $data->image;
+
+        $newFile = $request->file('image');
+
+        if ($newFile) {
+            if ($file != null) {
+                Storage::delete(public_path('jalur/' . $file));
+            }
+        }
+        $image = $request->file('image');
+        $extension = $image->getClientOriginalExtension();
+
+        $filePath = $image->move(public_path('jalur'), $request->nama_jalur . '.' . $extension);
+
+        $data->update([
+            'nama_jalur' => $request->nama_jalur,
+            'biaya_pendaftaran' => $request->biaya_pendaftaran,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_akhir' => $request->tanggal_akhir,
+            'meta_description' => $request->meta_description,
+            'deskripsi' => $request->deskripsi,
+            'image' => $request->nama_jalur . '.' . $extension,
+        ]);
         Alert::success('Success', 'Data Berhasil Diubah');
         return redirect()->route('admin.jalur-pendaftaran.index');
     }

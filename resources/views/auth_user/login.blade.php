@@ -90,21 +90,21 @@
 
 @push('script')
 <script>
-   $(document).ready(function() {
-  $("#showPasswordBtn").on("click", function() {
-    var passwordField = $("#password");
-    var passwordFieldType = passwordField.attr("type");
-    
-    if (passwordFieldType === "password") {
-      passwordField.attr("type", "text");
-      $(this).html('<i class="fa fa-eye"></i>');
-    } else {
-      passwordField.attr("type", "password");
-      $(this).html('<i class="fa fa-eye-slash"></i>');
-    }
-  });
-});
-    </script>
+    $(document).ready(function() {
+        $("#showPasswordBtn").on("click", function() {
+            var passwordField = $("#password");
+            var passwordFieldType = passwordField.attr("type");
+            
+            if (passwordFieldType === "password") {
+            passwordField.attr("type", "text");
+            $(this).html('<i class="fa fa-eye"></i>');
+            } else {
+            passwordField.attr("type", "password");
+            $(this).html('<i class="fa fa-eye-slash"></i>');
+            }
+        });
+    });
+</script>
     
 @endpush
 @endsection

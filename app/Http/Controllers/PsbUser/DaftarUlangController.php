@@ -54,12 +54,22 @@ class DaftarUlangController extends Controller
                 'pendidikan_ayah' => $request->pendidikan_ayah,
                 'penghasilan_ayah' => $request->penghasilan_ayah,
 
-                // ibu
+                // ayah
+                'nik_ibu' => $request->nik_ibu,
+                'tempat_lahir_ibu' => $request->tempat_lahir_ibu,
+                'tanggal_lahir_ibu' => $request->tanggal_lahir_ibu,
+                'status_ibu' => $request->status_ibu,
+                'pendidikan_ibu' => $request->pendidikan_ibu,
+                'penghasilan_ibu' => $request->penghasilan_ibu,
+                'alamat_orang_tua' => $request->alamat_orang_tua,
+
+                // wali
                 'nama_wali' => $request->nama_wali,
                 'nik_wali' => $request->nik_wali,
                 'status_wali' => $request->status_wali,
                 'pendidikan_wali' => $request->pendidikan_wali,
                 'penghasilan_wali' => $request->penghasilan_wali,
+                'no_hp_wali' => $request->no_hp_wali,
 
             ]);
 
@@ -72,7 +82,7 @@ class DaftarUlangController extends Controller
         }
 
         Alert::info('Warning', 'Anda tidak memiliki Akses untuk merubah dan mengganti data');
-        return redirect()->route('psb.dashboard');
+        return redirect()->route('psb.upload-berkas.index');
 
     }
 

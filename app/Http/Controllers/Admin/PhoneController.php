@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\PhonePsb;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
-use Yajra\DataTables\Facades\DataTables;
 
 class PhoneController extends Controller
 {
@@ -15,24 +14,6 @@ class PhoneController extends Controller
      */
     public function index(Request $request)
     {
-
-        $data = PhonePsb::get();
-        if ($request->ajax()) {
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($data) {
-                    $editRoute = route('admin.contact-wa.edit', $data->id);
-                    return view('components.action-button', [
-                        'editRoute' => $editRoute,
-                    ]);
-                })
-                ->make(true);
-        }
-
-        return view('admin.contact.index', [
-            'title' => 'Contact Whatsapp Panitia',
-            'data' => $data,
-        ]);
     }
 
     /**
@@ -41,10 +22,10 @@ class PhoneController extends Controller
     public function create()
     {
         $data['jalur'] = new PhonePsb();
-        $data['route'] = route('admin.contact-wa.store');
+        $data['route'] = route('admin.phone.store');
         $data['method'] = 'post';
         $title = "Tambah No WA";
-        return view('admin.contact.create', ['title' => $title, 'data' => $data]);
+        return view('admin.contact.phone-create', ['title' => $title, 'data' => $data]);
     }
 
     /**
@@ -52,14 +33,20 @@ class PhoneController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+        $no_wa = str_replace([' ', '-', '+'], '', $request->no_wa);
+
+        $request->validate([
             'nama' => 'required',
             'no_wa' => 'required',
         ]);
 
-        PhonePsb::create($validatedData);
+        PhonePsb::create([
+            'nama' => $request->nama,
+            'no_wa' => $no_wa,
+        ]);
         Alert::success('success', 'Data Berhasil Ditambahkan');
-        return redirect()->route('admin.contact-wa.index');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -76,10 +63,10 @@ class PhoneController extends Controller
     public function edit(string $id)
     {
         $data['jalur'] = PhonePsb::findOrFail($id);
-        $data['route'] = route('admin.contact-wa.update', $id);
+        $data['route'] = route('admin.phone.update', $id);
         $data['method'] = 'put';
         $title = "Ubah Data No Wa";
-        return view('admin.contact.create', ['title' => $title, 'data' => $data]);
+        return view('admin.contact.phone-create', ['title' => $title, 'data' => $data]);
     }
 
     /**
@@ -87,14 +74,18 @@ class PhoneController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validatedData = $request->validate([
+        $no_wa = str_replace([' ', '-', '+'], '', $request->no_wa);
+        $request->validate([
             'nama' => 'required',
             'no_wa' => 'required',
         ]);
 
-        PhonePsb::findOrFail($id)->update($validatedData);
+        PhonePsb::findOrFail($id)->update([
+            'nama' => $request->nama,
+            'no_wa' => $no_wa,
+        ]);
         Alert::success('success', 'Data Berhasil diubah');
-        return redirect()->route('admin.contact-wa.index');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
