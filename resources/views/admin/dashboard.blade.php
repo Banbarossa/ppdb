@@ -30,47 +30,49 @@
             </div>
         </div>
         @endforeach
-        
-        {{-- <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border border-4 border-primary border-bottom-0 border-top-0 border-end-0 shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a href="#" class="text-decoration-none fw-bold">djfaljdla</a>
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $user['pending']->count() }}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-primary" role="progressbar"
-                                            style="width:{{$user['pending']->count()}}%" aria-valuenow="50" aria-valuemin="0"
-                                            aria-valuemax="200"></div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">200</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
+
     </div>
 
     <div class="row mt-5">
         <div class="col-lg-8">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Informasi Pendaftaran</h4>
+                <div class="card-header bg-primary-subtle">
+                    <h4 class="card-title">Pendaftar Terbaru</h4>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate consequatur nostrum ipsam magni quod deserunt ratione aspernatur laboriosam corrupti expedita.</p>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                            <div class="fw-bold">mae</div>
+                            Content for list item
+                            </div>
+                            <span class="badge bg-primary rounded-pill">14</span>
+                        </li>
+                        @foreach ($latestUser as $item)
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{$item->name}}</div>
+                            Content for list item
+                            </div>
+                            <span class="badge bg-primary rounded-pill">14</span>
+                        </li>
+                        @endforeach
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card">
+                <img src="{{asset('images/contact.jpg')}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="bi bi-whatsapp me-3"></i>Contact panitia</h5>
+                    <div>
+                        <ul class="list-group list-group-flush">
+                            @foreach ($phone as $item)
+                                <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" class="me-4">+ {{$item->no_wa}}</a>{{$item->nama}} </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

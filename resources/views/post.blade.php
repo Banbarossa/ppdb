@@ -141,7 +141,6 @@
                                     @foreach ($phone as $item)
                                         <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" class="me-4">+ {{$item->no_wa}}</a>{{$item->nama}} </li>
                                     @endforeach
-                                    
                                 </ul>
                             </div>
 

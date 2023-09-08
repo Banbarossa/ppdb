@@ -153,21 +153,16 @@
             <div class="card">
                 <img src="{{asset('images/contact.jpg')}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">contact Us</h5>
-                    <ul>
-                        
-                    </ul>
-                    @if (auth()->user()->level_pendaftaran >= 4)
-                        <a href="{{route('psb.kartuujian.index')}}" class="btn btn-success">Unduh Kartu Ujian</a>
-                    @elseif (auth()->user()->level_pendaftaran < 4)  
-                        <p class="card-text">Silahkan mengisi pendaftaran secara lengkap untuk mengunduh kartu ujian.</p>
-                    @endif
+                    <h5 class="card-title"><i class="bi bi-whatsapp me-3"></i>Contact panitia</h5>
+                    <div>
+                        <ul class="list-group list-group-flush">
+                            @foreach ($phone as $item)
+                                <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" class="me-4">+ {{$item->no_wa}}</a>{{$item->nama}} </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-
-
-           
         </div>
 
     </div>

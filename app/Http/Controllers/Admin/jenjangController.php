@@ -59,7 +59,7 @@ class jenjangController extends Controller
         ]);
         Jenjang::create($dataStore);
         Alert::success('success', 'Data Berhasil Ditambahkan');
-        return redirect()->back();
+        return redirect()->route('admin.jenjang.index');
     }
 
     /**

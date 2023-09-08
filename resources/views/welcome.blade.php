@@ -17,6 +17,7 @@
     <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @vite(['resources/js/app.js'])
     @livewireStyles
 </head>
 
@@ -44,7 +45,7 @@
 
     <section class="py-5 bg-mesjid" id="jalur-pendaftaran">
         <div class="container">
-            <h2 class="section-title text-center">Jalur Pendaftaran</h2>
+            <h2 class="section-title text-center" data-aos="fade-up">Jalur Pendaftaran</h2>
             <div class="row">
                 @foreach($model as $item)
                     <div class="col-12 col-lg-4 col-md-6">
@@ -102,16 +103,20 @@
     <section class="py-5" id="lokasi">
         <div class="container">
             <div class="row">
-                <h2 class="section-title text-center">lokasi dan Informasi</h2>
+                <h2 class="section-title text-center" data-aos="fade-up">lokasi dan Informasi</h2>
                 <div class="col-md-7 col-lg-8">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.6904485480445!2d95.38395287432213!3d5.463853594515772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304038af7beb88bb%3A0xe7a57b4ea7017ba1!2sPesantren%20Imam%20Syafi&#39;i!5e0!3m2!1sid!2sid!4v1691197783004!5m2!1sid!2sid"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="card" data-aos="fade-up-right">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.6904485480445!2d95.38395287432213!3d5.463853594515772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x304038af7beb88bb%3A0xe7a57b4ea7017ba1!2sPesantren%20Imam%20Syafi&#39;i!5e0!3m2!1sid!2sid!4v1691197783004!5m2!1sid!2sid"
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+
+                    </div>
                 </div>
 
                 <div class="col-md-5 col-lg-4">
-                    <div class="card">
+                    <div class="card" data-aos="fade-left">
                         <img src="{{asset('images/contact.jpg')}}" class="card-img-top" alt="contact">
                         <div class="card-body">
                             <h5 class="card-title"><i class="bi bi-whatsapp me-3"></i>Contact Us</h5>
@@ -166,6 +171,7 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
     </script>
     <script src="{{ asset('admin_kit/js/app.js') }}"></script>
+    <script src="{{asset('jquery/jquery.min.js')}}"></script>
 </body>
 
 </html>

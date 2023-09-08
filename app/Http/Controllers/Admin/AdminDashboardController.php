@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\NewStudent;
+use App\Models\PhonePsb;
 use App\Models\User;
 use App\Traits\ActiveYearTrait;
 
@@ -50,9 +51,14 @@ class AdminDashboardController extends Controller
         ];
 
         $student = NewStudent::where('tahun_id', $tahun_aktif)->get();
+
+        $LatestUser = User::latest()->take(10)->get();
+        $phone = PhonePsb::all();
         return view('admin.dashboard', [
             'user' => $user,
             'student' => $student,
+            'latestUser' => $LatestUser,
+            'phone' => $phone,
         ]);
     }
 }
