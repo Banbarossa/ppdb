@@ -33,7 +33,7 @@
                                 </tr>                             
                                 <tr>
                                     <th>Jenjang</th>
-                                    <td>{{$data->jenjang->nama_jenjang}}</td>
+                                    <td>{{$data->jenjang ? $data->jenjang :'' }}</td>
                                 </tr>                             
                                 <tr>
                                     <th>nisn</th>
@@ -65,7 +65,7 @@
                                 </tr>               
                                 <tr>
                                     <th>Tanggal Lahir</th>
-                                    <td>{{$data->tanggal_lahir_siswa}} | Usia : {{\Carbon\Carbon::parse($data->tanggal_lahir_siswa)->diffForHumans()}}</td>
+                                    <td>{{$data->tanggal_lahir_siswa}} | Usia : {{ $data->tanggal_lahir_siswa ? \Carbon\Carbon::parse($data->tanggal_lahir_siswa)->diffForHumans() : ''}}</td>
                                 </tr>               
                                 <tr>
                                     <th>Status Anak</th>

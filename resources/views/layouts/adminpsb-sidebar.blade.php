@@ -81,6 +81,11 @@
                     <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Jenjang Pendidikan</span>
                 </a>
             </li>
+            <li class="sidebar-item {{request()->is('admin/admin-management*')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.admin-management.index')}}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Kelola Admin</span>
+                </a>
+            </li>
 
 
         </ul>

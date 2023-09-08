@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminAuth\AuthenticatedSessionController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ContactPsbController;
 use App\Http\Controllers\Admin\JalurMasukController;
@@ -47,5 +48,7 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::get('contact-media', [ContactPsbController::class, 'getMedia'])->name('get-media');
 
     Route::resource('jenjang', jenjangController::class);
+    Route::resource('admin-management', AdminController::class)->except('show');
+    Route::put('admin-management/{id}/update-pasword', [AdminController::class, 'updatePassword'])->name('admin-management.updatePassword');
 
 });

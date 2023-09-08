@@ -4,7 +4,7 @@
     @endisset
 
     @isset($editRoute)
-        <a href="{{$editRoute}}" class="btn btn-warning" id="editButton">Edit Data</a>
+        <a href="{{$editRoute}}" class="btn btn-warning" id="editButton">Edit</a>
     @endisset
     @isset($deleteRoute)
         <form action="{{$deleteRoute}}" method="post" class="d-inline">

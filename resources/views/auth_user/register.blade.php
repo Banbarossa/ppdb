@@ -127,10 +127,7 @@
         </div>
     </div>
 </div>
-{{-- 
-@push('bootstrap')
-    <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}">
-@endpush --}}
+
 
 @push('script')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
