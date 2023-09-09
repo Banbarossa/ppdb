@@ -1,6 +1,6 @@
 @extends('auth_user.layouts.template')
 @section('content')
-<main class="d-flex w-100 bg-mesjid">
+<main class="d-flex w-100 bg-pustaka min-vh-100">
     <div class="container d-flex flex-column">
         <div class="row mt-5">
             @if(session('success'))
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="text-center mb-3">
-                        Don't have an account? <a href="/">Sign up</a>
+                        {{-- Don't have an account? <a href="/">Sign up</a> --}}
                     </div>
                 </div>
             </div>

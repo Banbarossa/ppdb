@@ -26,7 +26,7 @@ class WelcomeController extends Controller
         $tanggalSekarang = now()->format('Y-m-d');
         $data = JalurMasuk::findOrFail($id);
 
-        $all = JalurMasuk::where('status', true)->get();
+        $all = JalurMasuk::where('status', true)->where('id', '!=', $id)->get();
         $phone = PhonePsb::all();
         $media = ContactPsb::all();
         return view('post',

@@ -9,6 +9,7 @@
     <div class="row justify-content-start">
         <div class="col-lg-8">
             <div class="card">
+                <img src="{{asset('jalur/')}}/{{$item->image ?? 'default.png'}}" class="card-img-top" alt="{{$item->name}}">
                 <div class="card-body">
                     <h2 class="text-primary fs-2 fw-bold">{{ $item->nama_jalur }}</h2>
                     <div >

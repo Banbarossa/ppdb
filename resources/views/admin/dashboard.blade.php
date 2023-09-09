@@ -5,7 +5,7 @@
 <x-user-content>
     <div class="row">
         @foreach ($user as $status => $item)
-        <div class="col-xl-3 col-md-6 mb-4">
+        <div class="col-xl-3 col-md-6 mb-4" data-aos="fade-up">
             <div class="card border border-4 border-{{$item['color']}} border-bottom-0 border-top-0 border-end-0 shadow py-2 px-3">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -77,6 +77,7 @@
             </div>
         </div>
     </div>
+
 
 
 

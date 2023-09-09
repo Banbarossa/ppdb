@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
+    <link rel="shortcut icon" href="{{asset('images/logo.png')}}" />
 
-    <link rel="canonical" href="https://demo-basic.adminkit.io/pages-blank.html" />
+
 
     <title>{{ config('app.name', 'PPDB | PIS') }}</title>
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> --}}
 
     @stack('bootstrap')
     <link rel="stylesheet" href="{{asset('bootstrap/bootstrap.min.css')}}">

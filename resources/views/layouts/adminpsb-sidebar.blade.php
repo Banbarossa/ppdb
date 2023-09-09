@@ -72,6 +72,11 @@
                     <i class="align-middle" data-feather="calendar"></i> <span class="align-middle">Tahun</span>
                 </a>
             </li>
+            <li class="sidebar-item {{request()->is('admin/contact*')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.contact.index')}}">
+                    <i class="align-middle" data-feather="phone"></i> <span class="align-middle">Contact Panitia</span>
+                </a>
+            </li>
             <li class="sidebar-item {{request()->is('admin/jalur-pendaftaran*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.jalur-pendaftaran.index')}}">
                     <i class="align-middle" data-feather="git-commit"></i> <span class="align-middle">Jalur Pendaftaran</span>
@@ -80,6 +85,11 @@
             <li class="sidebar-item {{request()->is('admin/jenjang*')?'active':''}}">
                 <a class="sidebar-link" href="{{route('admin.jenjang.index')}}">
                     <i class="align-middle" data-feather="activity"></i> <span class="align-middle">Jenjang Pendidikan</span>
+                </a>
+            </li>
+            <li class="sidebar-item {{request()->is('admin/petunjuk')?'active':''}}">
+                <a class="sidebar-link" href="{{route('admin.petunjuk')}}">
+                    <i class="align-middle" data-feather="user"></i> <span class="file-text">Petunjuk Pendaftaran</span>
                 </a>
             </li>
             <li class="sidebar-item {{request()->is('admin/admin-management*')?'active':''}}">

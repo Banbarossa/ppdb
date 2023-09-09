@@ -12,6 +12,7 @@
     <link href="{{ asset('admin_kit/css/mystyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    @vite(['resources/js/app.js'])
 </head>
 
 <body>
@@ -96,6 +97,7 @@
 
 
                     <!--Section: Comments-->
+                    @if (count($all)>=1)
                     <section class="border-bottom mb-3">
                         <p class="text-center"><strong>Jalur Lainnya</strong></p>
 
@@ -117,9 +119,9 @@
                             </div>
                         </a>
                         @endforeach
-                        
-                       
                     </section>
+                    @endif
+                    
                     <!--Section: Comments-->
 
                 </div>
@@ -128,7 +130,7 @@
                 <!--Grid column-->
                 <div class="col-md-4 mb-4">
                     <!--Section: Sidebar-->
-                    <section class="sticky-top shadow-lg" style="top: 80px;">
+                    <section class="sticky-top shadow-lg" style="top: 80px;" data-aos="fade-up">
                         <!--Section: Ad-->
                         <section class=" border-bottom pb-4 mb-4">
                             <div class="bg-image hover-overlay ripple mb-4">

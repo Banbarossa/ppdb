@@ -119,7 +119,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p>wajib menggunkan <strong>email</strong>  yang aktif, sebelum mendaftarkan akun, anda telah mengirimkan biaya pendaftran sesuai dengan besaran biaya pendftaran sesuai dengan jalur yang anda pilih. resi di scan dan di aupload pada formulir pendaftran</p>
+               {!!$petunjuk->petunjuk!!}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

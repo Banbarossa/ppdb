@@ -7,6 +7,7 @@ use App\Jobs\SendEmailQueueJob;
 use App\Models\JalurMasuk;
 use App\Models\Jenjang;
 use App\Models\NewStudent;
+use App\Models\PetunjukPendaftaran;
 use App\Models\Tahun;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -28,7 +29,8 @@ class RegisteredUserController extends Controller
     {
         $jenjang = Jenjang::all();
         $jalurMasuk = JalurMasuk::findOrFail($id);
-        return view('auth_user.register', compact('jalurMasuk', 'jenjang'));
+        $petunjuk = PetunjukPendaftaran::findOrFail(1);
+        return view('auth_user.register', compact('jalurMasuk', 'jenjang', 'petunjuk'));
     }
 
     /**

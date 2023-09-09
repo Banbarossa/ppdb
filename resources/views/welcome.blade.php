@@ -43,13 +43,13 @@
         $tanggalSekarang = now()->format('Y-m-d');
     @endphp
 
-    <section class="py-5 bg-mesjid" id="jalur-pendaftaran">
+    <section class="py-5 bg-pustaka" id="jalur-pendaftaran">
         <div class="container">
             <h2 class="section-title text-center" data-aos="fade-up">Jalur Pendaftaran</h2>
             <div class="row">
                 @foreach($model as $item)
                     <div class="col-12 col-lg-4 col-md-6">
-                        <div class="card px-3 shadow-md pb-4" style="height: 400px">
+                        <div class="card px-3 shadow-md pb-4" style="height: 400px" data-aos="fade-up-right">
                             <div class="card-header border-bottom pt-4 bg-tertiary">
                                 <div class="d-flex gap-2 align-items-centers">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
@@ -81,7 +81,7 @@
                                     <button class="btn btn-warning">Jalur ini belum dibuka</button>
                                 @elseif ($tanggalSekarang >= $item->tanggal_mulai && $tanggalSekarang <=$item->tanggal_akhir)
                                     <a href="{{ route('psb.register',['id'=>$item->id]) }}"
-                                        class="btn btn-primary">Daftar Sekarang</a>
+                                        class="btn btn-success">Daftar Sekarang</a>
                                 @else
                                     <button class="btn btn-danger">Jalur ini Sudah Tutup</button>
                                 @endif
@@ -158,7 +158,7 @@
                     </a>
                 </div>
                 <div class="col-12 mt-4 text-center">
-                    <p class="text-success">&copy; {{ date('Y') }}Hak Cipta Dilindungi.</p>
+                    <p class="text-warning">&copy; {{ date('Y') }} Hak Cipta Dilindungi.</p>
                     
                 </div>
             </div>

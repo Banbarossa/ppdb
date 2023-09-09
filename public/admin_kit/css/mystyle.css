@@ -72,6 +72,41 @@
     filter: opacity(0.2);
 
 }
+.bg-asrama{
+    position: relative;
+}
+
+.bg-asrama::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url('/images/asrama.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    filter: opacity(0.5);
+
+}
+.bg-pustaka{
+    position: relative;
+}
+
+.bg-pustaka::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url('/images/pustaka.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
+    filter: opacity(0.3);
+    z-index: 0;
+
+}
 .bg-navbar{
     background-color: rgb(203, 198, 198);
 }

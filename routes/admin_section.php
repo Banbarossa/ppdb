@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\JalurMasukController;
 use App\Http\Controllers\Admin\jenjangController;
 use App\Http\Controllers\Admin\NewStudentController;
 use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PetunjukPendaftaranController;
 use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\KelulusanSantriBaruController;
@@ -30,8 +31,6 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
 
     Route::resource('user-register', UserController::class);
     Route::get('registration-status/{status}', [PendaftarController::class, 'getPending'])->name('pending.pendaftar');
-    Route::resource('tahun', TahunController::class);
-    Route::get('activasi-tahun/{id}', [TahunController::class, 'aktifasiTahun'])->name('activasi-tahun');
 
     Route::get('siswa-baru', [NewStudentController::class, 'index'])->name('siswa-baru.index');
     Route::get('show-siswa/{id}', [NewStudentController::class, 'show'])->name('siswa-baru.show');
@@ -42,10 +41,15 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
 
     Route::resource('jalur-pendaftaran', JalurMasukController::class);
 
+    Route::resource('tahun', TahunController::class);
+    Route::get('activasi-tahun/{id}', [TahunController::class, 'aktifasiTahun'])->name('activasi-tahun');
     Route::resource('contact', ContactPsbController::class)->except('show');
     Route::resource('phone', PhoneController::class)->except(['index', 'show']);
     Route::get('contact-wa', [ContactPsbController::class, 'getWa'])->name('get-wa');
     Route::get('contact-media', [ContactPsbController::class, 'getMedia'])->name('get-media');
+    Route::get('contact-media', [ContactPsbController::class, 'getMedia'])->name('get-media');
+    Route::get('petunjuk', [PetunjukPendaftaranController::class, 'index'])->name('petunjuk');
+    Route::post('petunjuk', [PetunjukPendaftaranController::class, 'store'])->name('petunjuk.store');
 
     Route::resource('jenjang', jenjangController::class);
     Route::resource('admin-management', AdminController::class)->except('show');
