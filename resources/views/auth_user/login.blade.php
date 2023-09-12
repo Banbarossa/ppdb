@@ -1,6 +1,6 @@
-@extends('auth_user.layouts.template')
+@extends('layouts.guest-bootstrap')
 @section('content')
-<main class="d-flex w-100 bg-mesjid min-vh-100">
+<main class="d-flex w-100 bg-mesjid my-5" id="hero">
     <div class="container d-flex flex-column">
         <div class="row mt-5">
             @if(session('success'))
@@ -33,7 +33,7 @@
                                     @csrf
                                     <div class="mb-3">
                                         <label class="form-label">Email</label>
-                                        <input class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                        <input class="form-control form-control @error('email') is-invalid @enderror"
                                             type="email" name="email" placeholder="Enter your email" />
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                     </div>
@@ -43,14 +43,11 @@
                                             <input type="password" class="form-control" id="password" name="password">
                                             <div class="input-group-append">
                                               <button class="btn btn-outline-secondary" type="button" id="showPasswordBtn">
-                                                <i class="fa fa-eye-slash"></i>
+                                                <i data-feather="eye"></i>
                                               </button>
                                             </div>
                                         </div>
                                         
-                                        {{-- <input class="form-control form-control-lg @error('email') is-invalid @enderror"
-                                            type="
-                                            password" name="password" placeholder="Enter your password" /> --}}
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
 
@@ -65,9 +62,7 @@
 
                                     <div class="d-grid gap-2 mt-3">
 
-                                        <x-primary-button class="ml-3 btn-primary">
-                                            {{ __('Log in') }}
-                                        </x-primary-button>
+                                        <button type="submit" class="btn btn-success">Log in</button>
                                         @if(Route::has('password.request'))
                                             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                                 href="{{ route('password.request') }}">

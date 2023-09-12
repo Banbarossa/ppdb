@@ -1,0 +1,224 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&family=Nunito:wght@300;400;500;600;700;800;900&display=swap');
+
+
+@keyframes moveUpDown {
+    0% {
+    transform: translateY(0);
+    }
+    50% {
+    transform: translateY(-30px);
+    }
+    100% {
+    transform: translateY(0);
+    }
+}
+
+
+.animated-image {
+    animation-name: moveUpDown;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+
+
+
+body{
+    font-family: 'Nunito', sans-serif;
+}
+
+.navbar-brand{
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: maroon;
+}
+
+#hero{
+    position: relative;
+}
+#hero::before{
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    background: url('/images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1;
+}
+
+
+.animated-image{
+    animation: moveUpDown 0.5 infinite;
+    transition: transform 0.5s ease-in-out
+}
+.hero-desc h1{
+    font-size: 2rem;
+    font-weight: 800;
+    color: maroon;
+}
+.hero-desc h2{
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+.hero-desc h2 span{
+    font-size: 0.8rem;
+    font-weight: 600;
+    
+}
+.hero-desc h3{
+    font-size: 1rem;
+    font-weight: 500;
+    
+}
+.hero-desc{
+    padding-left: 20px;
+}
+.section-title{
+    font-size: 2rem;
+    margin-top: 20px;
+    font-weight: 700;
+    color: maroon;
+    text-align: center;
+    text-shadow: 0 0 2px black
+}
+.card-title{
+    font-size: 1.3;
+    font-weight: 800;
+    color: maroon;
+}
+
+.card-img-top{
+    filter: opacity(0.9) sepia(0.1);
+}
+.card-img-top:hover{
+    filter: opacity(1);
+}
+.list-group-item{
+    font-size: 1rem;
+    font-weight: 500;
+}
+blockquote{
+    font-size: 0.9rem;
+}
+.bg-maroon{
+    background-color: rgb(124, 3, 3);
+}
+.list-footer{
+    list-style: none;
+    color: white;
+}
+.img-thumbnail{
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+.post-list{
+    list-style: none;
+}
+
+.header-list{
+    color: white;
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    font-size: 0.8rem;
+}
+.text-maroon{
+    color: maroon;
+}
+
+
+
+
+
+
+
+/* media sm */
+@media (min-width: 576px) {
+
+
+    .hero-desc h1{
+        font-size: 3rem;
+        font-weight: 800;
+        color: maroon;
+    }
+    .hero-desc h2{
+        font-size: 2.2rem;
+        font-weight: 600;
+        
+    }
+    .hero-desc h3{
+        font-size: 1.1rem;
+        font-weight: 500;
+        
+    }
+
+
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .hero-desc{
+        padding-left: 20px;
+    }
+}
+
+
+
+/* media lg: laptop dan lebih besar */
+@media (min-width: 992px) {
+    #navbarNav .nav-item .nav-link{
+        
+        font-weight: 500;
+        color: maroon;
+        opacity: 0.8;
+    }
+    #navbarNav .nav-item .active{
+        
+        font-weight: 500;
+        color: maroon;
+    }
+
+    #navbarNav .nav-item{
+        margin-right: 20px;
+        position: relative;
+    }
+
+    #navbarNav .nav-item:hover::after {
+        content: '';
+        display: block;
+        width: 50%;
+        border: 3px solid maroon;
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translate(-50%);
+    }
+    .hero-desc h1{
+        font-size: 3rem;
+        font-weight: 900;
+        color: maroon;
+    }
+    .hero-desc h2{
+        font-size: 2.5rem;
+        font-weight: 600;
+        
+    }
+    .hero-desc h3{
+        font-size: 1.3rem;
+        font-weight: 500;
+        
+    }
+    .hero-desc{
+        padding-left: 0px;
+    }
+
+
+}

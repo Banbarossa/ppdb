@@ -1,8 +1,8 @@
-@extends('auth_user.layouts.template')
+@extends('layouts.guest-bootstrap')
 @section('content')
-<main class="d-flex w-100 bg-mesjid">
+<main class="d-flex w-100 bg-mesjid my-5" id="hero">
     <div class="container d-flex flex-column">
-        <div class="row vh-100">
+        <div class="row">
             <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto d-table h-100">
                 <div class="d-table-cell align-middle">
 
@@ -33,14 +33,14 @@
                                     <input type="hidden" name="jalurMasuk" value="{{ $jalurMasuk->id }}">
                                     <div class="mb-3">
                                         <label class="form-label">Nama Siswa</label>
-                                        <input class="form-control form-control-lg @error('name') is-invalid @enderror"
+                                        <input class="form-control form-control @error('name') is-invalid @enderror"
                                             type="text" name="name" value="{{ old('name') }}"
                                             placeholder="Enter your name" autofocus autocomplete="name" />
                                         <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">No HP (+62)</label>
-                                        <input class="form-control form-control-lg @error('no_hp') is-invalid @enderror"
+                                        <input class="form-control form-control @error('no_hp') is-invalid @enderror"
                                             type="text" id="no_hp" name="no_hp"
                                             value="{{ old('no_hp') }}"
                                             placeholder="Enter your phone number" />
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Email <span class="ms-2"><small class="text-danger">pastikan anda mendaftar dengan email aktif</small></span> </label>
-                                        <input class="form-control form-control-lg @error('email') is-invalid @enderror"
+                                        <input class="form-control form-control @error('email') is-invalid @enderror"
                                             type="email" name="email" value="{{ old('email') }}"
                                             placeholder="Enter your email" />
                                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
@@ -67,14 +67,14 @@
                                     <div class="mb-3">
                                         <label class="form-label">Password</label>
                                         <input
-                                            class="form-control form-control-lg @error('password') is-invalid @enderror"
+                                            class="form-control form-control @error('password') is-invalid @enderror"
                                             type="password" name="password" placeholder="Enter password" />
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
                                     <div class="mb-3">
                                         <label class="form-label">Password Confirmation</label>
                                         <input
-                                            class="form-control form-control-lg @error('password_confirmation') is-invalid @enderror"
+                                            class="form-control form-control @error('password_confirmation') is-invalid @enderror"
                                             type="password" name="password_confirmation" placeholder="Enter password Confirmation" />
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
@@ -88,16 +88,15 @@
                                     </div>
 
                                     <div class="d-grid gap-2 mt-3">
-                                        <x-primary-button class="ml-3 btn-primary">
-                                            {{ __('Sign up') }}
-                                        </x-primary-button>
+
+                                        <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
                     <div class="text-center mb-3">
-                        Already have account? <a href="{{ route('psb.login') }}l">Log In</a>
+                        Already have account? <a href="{{ route('psb.login') }}">Log In</a>
                     </div>
                 </div>
             </div>
