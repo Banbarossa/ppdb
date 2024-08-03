@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'approved' => \App\HTTP\Middleware\ApprovedUserMiddleware::class,
         'daftar.ulang' => \App\Http\Middleware\DaftarUlangMiddleware::class,
+        'verify.api.token' => \App\Http\Middleware\VerifyApiToken::class,
     ];
 }

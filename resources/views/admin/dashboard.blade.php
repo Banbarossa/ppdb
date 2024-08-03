@@ -41,20 +41,19 @@
                 </div>
                 <div class="card-body">
                     <ol class="list-group list-group-numbered">
-                        <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto">
-                            <div class="fw-bold">mae</div>
-                            Content for list item
-                            </div>
-                            <span class="badge bg-primary rounded-pill">14</span>
-                        </li>
                         @foreach ($latestUser as $item)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                             <div class="fw-bold">{{$item->name}}</div>
-                            Content for list item
+                            {{$item->nama_jalur}}
                             </div>
-                            <span class="badge bg-primary rounded-pill">14</span>
+                            @if ($item->approval == 'approved')
+                                <span class="badge bg-success rounded-pill">{{ucFirst($item->approval)}}</span>
+                            @elseif ($item->approval == 'pending')
+                                <span class="badge bg-warning rounded-pill">{{ucFirst($item->approval)}}</span>
+                            @else
+                                <span class="badge bg-danger rounded-pill">{{ucFirst($item->approval)}}</span>
+                            @endif
                         </li>
                         @endforeach
                     </ol>

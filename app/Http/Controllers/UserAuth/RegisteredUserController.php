@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     { //: RedirectResponse {
 
-        $jalur_masuk = JalurMasuk::findOrFail($request->id)->nama_jalur;
+        $jalur_masuk = JalurMasuk::findOrFail($request->id);
         $biaya_pendaftaran = JalurMasuk::findOrFail($request->id)->biaya_pendaftaran;
         $tahun_id = Tahun::where('status', 'aktif')->first();
         $jumlah_user = User::all()->count();
@@ -56,6 +56,16 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Password::defaults()],
             'resi' => ['required', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
+
+        $nama_bukti = null;
+        if ($jalur_masuk->file_required == true) {
+            $request->validate([
+                'bukti_prestasi' => 'required|file|max:2048|mimes:pdf',
+            ]);
+            $file_bukti = $request->file('bukti_prestasi');
+            $nama_bukti = $file_bukti->hashName();
+            $file_bukti->storeAs('buktiPrestasi', $nama_bukti);
+        };
 
         // defrag no hp
         $no_hp = str_replace([' ', '-'], '', $request->no_hp);
@@ -73,7 +83,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'resi' => $filename,
-            'nama_jalur' => $jalur_masuk,
+            'nama_jalur' => $jalur_masuk->nama_jalur,
             'biaya_pendaftaran' => $biaya_pendaftaran,
             'approval' => 'pending',
             'approval_note' => '',
@@ -89,8 +99,9 @@ class RegisteredUserController extends Controller
             'tahun_id' => $tahun_id->id,
             'no_hp' => $no_hp,
             'jenjang_id' => $request->jenjang,
-            'jalur_masuk' => $jalur_masuk,
+            'jalur_masuk' => $jalur_masuk->nama_jalur,
             'biaya_pendaftaran' => $biaya_pendaftaran,
+            'bukti_prestasi' => $nama_bukti,
         ]);
 
         event(new Registered($user));

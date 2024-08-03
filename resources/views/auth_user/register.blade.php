@@ -52,7 +52,7 @@
                                             class="form-select @error('jenjang') is-invalid @enderror">
                                             <option value="">Pilih Jenjang Pendidikan</option>
                                             @foreach($jenjang as $item)
-                                                <option value="{{ $item->id }}">{{ $item->nama_jenjang }}</option>
+                                                <option value="{{ $item->id }}" @if(old('jenjang') == $item->id) selected @endif>{{ $item->nama_jenjang }}</option>
                                             @endforeach
                                         </select>
                                         <x-input-error :messages="$errors->get('jenjang')" class="mt-2" />
@@ -79,13 +79,21 @@
                                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                     </div>
                                     <div class="mb-3">
-                                        <label for="resi" class="form-label">Upload Resi Pembayaran</label>
+                                        <label for="resi" class="form-label">Upload Resi Pembayaran<span class="text-danger text-sm ms-3">jpg,jpeg,png</span></label>
                                         <input class="form-control @error('resi') is-invalid @enderror" type="file"
                                             id="resi" name="resi">
                                         <x-input-error :messages="$errors->get('resi')" class="mt-2" />
                                         <img id="previewImage" src="#" alt="Preview Image"
                                             style="display: none; width:200pt;" class="mt-2">
                                     </div>
+                                    @if ($jalurMasuk->file_required == true)
+                                    <div>
+                                        <label for="bukti_prestasi" class="form-label">Upload Bukti Prestasi (Surat Keterangan Dari Sekolah) <span class="text-danger text-sm">.pdf</span> </label>
+                                        <input class="form-control @error('bukti_prestasi') is-invalid @enderror" type="file"
+                                            id="bukti_prestasi" name="bukti_prestasi">
+                                        <x-input-error :messages="$errors->get('bukti_prestasi')" class="mt-2" />
+                                    </div>                          
+                                    @endif
 
                                     <div class="d-grid gap-2 mt-3">
 

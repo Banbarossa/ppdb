@@ -13,12 +13,13 @@
 
 <body>
     <section class="bg-maroon">
-        <div class="container d-flex justify-content-end align-items-center pt-2">
-            <ul class="header-list">
-                <li>+62 821-8444-2747</li>
-                <li>itpisaceh@gmail.com</li>
-                <li>admin@pis.sch.id</li>
-            </ul>
+        <div class="container d-flex justify-content-end align-items-center py-2">
+            <div class="text-white me-3">+62 821-8444-2747</div>
+            <div class="d-block d-md-flex">
+                <div class="text-white me-3">itpisaceh@gmail.com</div>
+                <div class="text-white me-3">admin@pis.sch.id</div>
+            </div>
+            
         </div>
 
 
@@ -96,13 +97,15 @@
         </div>
     </section>
 
-
+    @include('sweetalert::alert')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
     <script>
         feather.replace();
-    </script>
+        </script>
+    <script src="{{asset('jquery/jquery.min.js')}}"></script>
+    @stack('script')
 </body>
 
 </html>

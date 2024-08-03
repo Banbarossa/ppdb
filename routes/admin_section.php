@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\JalurMasukController;
 use App\Http\Controllers\Admin\jenjangController;
 use App\Http\Controllers\Admin\NewStudentController;
 use App\Http\Controllers\Admin\PendaftarController;
+use App\Http\Controllers\Admin\PendaftranUlangController;
 use App\Http\Controllers\Admin\PetunjukPendaftaranController;
 use App\Http\Controllers\Admin\PhoneController;
 use App\Http\Controllers\Admin\UserController;
@@ -38,6 +39,9 @@ Route::group(['middleware' => 'auth:admin', 'prefix' => 'admin', 'as' => 'admin.
     Route::get('kelulusan/{id}', [KelulusanSantriBaruController::class, 'index'])->name('kelulusan.index');
     Route::post('kelulusan', [KelulusanSantriBaruController::class, 'luluskan'])->name('kelulusan.luluskan');
     Route::get('kelulusan/{id}/approve', [KelulusanSantriBaruController::class, 'luluskanSatu'])->name('kelulusan.satu');
+    Route::get('daftar-ulang/jenjang/{id}', [PendaftranUlangController::class, 'index'])->name('daftarulang.index');
+    Route::get('daftar-ulang/unregistered', [PendaftranUlangController::class, 'unregistered'])->name('unregistered');
+    Route::get('daftar-ulang/{id}/show', [PendaftranUlangController::class, 'show'])->name('daftarulang.show');
 
     Route::resource('jalur-pendaftaran', JalurMasukController::class);
 

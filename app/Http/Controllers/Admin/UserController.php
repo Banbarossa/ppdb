@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\EmailRegisterUserValidation;
+use App\Models\NewStudent;
 use App\Models\Tahun;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -34,11 +35,6 @@ class UserController extends Controller
                 ->toJson();
         }
 
-        // $query = $request->input('query');
-        // if ($query) {
-        //     $data['user'] = User::search($query, $tahun);
-        // }
-
         return view('admin.user.index', ['title' => $title, 'data' => $data]);
     }
 
@@ -65,12 +61,13 @@ class UserController extends Controller
     {
 
         $data['title'] = 'Detail Pendaftaran';
+        $data['user'] = User::with('newStudents.jenjang')->where('id', $id)->first();
+        $data['new-student'] = NewStudent::where('user_id', $id)->first();
 
-        try {
-            $data['user'] = User::with('newStudents.jenjang')->where('id', $id)->first();
-        } catch (\Exception $e) {
-            echo "Error: " . $e->getMessage();
-        }
+        // try {
+        // } catch (\Exception $e) {
+        //     echo "Error: " . $e->getMessage();
+        // }
 
         // $data['user'] = User::with('newStudents')->where('id', $id)->get;
         return view('admin.user.show', ['data' => $data]);

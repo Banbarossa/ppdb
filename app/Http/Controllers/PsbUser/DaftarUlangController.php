@@ -11,6 +11,7 @@ use App\Traits\AgamaTrait;
 use App\Traits\GolonganDarahTrait;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class DaftarUlangController extends Controller
@@ -20,6 +21,7 @@ class DaftarUlangController extends Controller
 
     public function index()
     {
+
         $data['siswa'] = NewStudent::where('user_id', auth()->user()->id)->first();
         $data['agama'] = $this->getAgama();
         $data['golongan_darah'] = $this->getGolonganDarah();
@@ -144,7 +146,7 @@ class DaftarUlangController extends Controller
 
     public function unduhFormulir()
     {
-
+        Auth::loginUsingId(3);
         $data = NewStudent::where('user_id', auth()->user()->id)->first();
         $pdf = Pdf::loadView('psb-user.unduh-formulir', ['data' => $data]);
         $pdf->setPaper('A4', 'potrait');

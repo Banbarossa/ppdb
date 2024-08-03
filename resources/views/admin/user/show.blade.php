@@ -48,7 +48,12 @@
                                 </tr>               
                                 <tr>
                                     <th>Resi</th>
-                                    <td><a href="/gambar/{{$data['user']->resi}}" target="blank">Lihat Gambar</a></td>
+                                    <td><a href="/gambar/{{$data['user']->resi}}" target="blank" class="me-4">Lihat Gambar</a>
+                                    @if ($data['new-student']->bukti_prestasi != null)
+                                        <a href="/bukti-prestasi/{{$data['new-student']->bukti_prestasi}}" target="blank">Lihat Bukti Prestasi</a>
+                                    @endif
+                                    </td>
+                                    
                                     
                                 </tr>               
                             </table>

@@ -50,13 +50,25 @@
             </li>
             <div x-data="{ open: false }">
                 <li class="sidebar-item d-grid {{request()->is('admin/kelulusan*') ? 'active' : ''}}">
-                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="bar-chart"></i>Kelulusan</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="check-circle"></i>Kelulusan</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
                 </li>
                 <div class="ps-4" x-show="open">
                     @foreach ($jenjang as $item)
                         <a class="collapse-item sidebar-link" href="{{route('admin.kelulusan.index',$item->id)}}">{{$item->nama_jenjang}}</a>
                         
                     @endforeach
+                
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <li class="sidebar-item d-grid {{request()->is('admin/daftar-ulang*') ? 'active' : ''}}">
+                    <button class="sidebar-link d-flex justify-content-between border-0"  @click="open = ! open"><span class="align-middle"><i class="align-middle" data-feather="bar-chart"></i>Daftar Ulang</span> <i class="align-middle ms-auto" data-feather="chevron-right"></i></button>
+                </li>
+                <div class="ps-4" x-show="open">
+                    @foreach ($jenjang as $item)
+                        <a class="collapse-item sidebar-link" href="{{route('admin.daftarulang.index',$item->id)}}">{{$item->nama_jenjang}}</a>
+                    @endforeach
+                        <a class="collapse-item sidebar-link" href="{{route('admin.unregistered')}}">Belum Daftar Ulang</a>
                 
                 </div>
             </div>

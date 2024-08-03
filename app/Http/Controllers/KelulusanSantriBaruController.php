@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewStudent;
+use App\Models\User;
 use App\Traits\ActiveYearTrait;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -70,6 +71,9 @@ class KelulusanSantriBaruController extends Controller
             $student->update([
                 'kelulusan' => true,
             ]);
+            User::findOrFail($student->user_id)->update([
+                'level_pendaftaran' => 5,
+            ]);
 
         }
 
@@ -80,8 +84,13 @@ class KelulusanSantriBaruController extends Controller
 
     public function luluskanSatu($id)
     {
-        NewStudent::findOrFail($id)->update([
+        $student = NewStudent::findorFail($id);
+        $student->update([
             'kelulusan' => true,
+        ]);
+
+        User::findOrFail($student->user_id)->update([
+            'level_pendaftaran' => 5,
         ]);
 
         Alert::success('success', 'Berhasil diluluskan');

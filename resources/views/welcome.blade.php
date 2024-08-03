@@ -16,8 +16,8 @@
                         <h3>Adab, Intelek dan Skill
                     </h2>
                     <div class="mt-4">
-                        <a href="#jalur-pendaftaran" class="btn btn-success btn-lg rounded-pill px-5 me-3">Daftar Sekarang</a>
-                        <a href="https://pis.sch.id" class="btn btn-outline-success btn-lg rounded-pill px-4">About Ust</a>
+                        <a href="#jalur-pendaftaran" class="btn btn-success btn-lg rounded-pill me-3">Daftar Sekarang</a>
+                        <a href="https://pis.sch.id" target="blank" class="btn btn-outline-success btn-lg rounded-pill">About Us</a>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="section-title">
             Jalur Pendaftaran
         </div>
-        <div class="row mt-4 bg-">
+        <div class="row mt-4 d-flex justify-content-center">
             @foreach ($model as $item)
             <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card">
@@ -115,7 +115,7 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             @foreach ($phone as $item)
-                                <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" class="me-4 text-decoration-none">+ {{$item->no_wa}}</a>{{$item->nama}}</li>
+                                <li class="list-group-item"><a href="https://wa.me/{{$item->no_wa}}" target="blank" class="me-4 text-decoration-none">+ {{$item->no_wa}}</a>{{$item->nama}}</li>
                             @endforeach
                         </ul>
                         <hr>

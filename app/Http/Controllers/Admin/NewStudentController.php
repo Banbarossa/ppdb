@@ -53,8 +53,6 @@ class NewStudentController extends Controller
             ->where('id', $id)
             ->first();
 
-        // dd($data);
-
         $title = 'Detail data siswa';
         return view('admin.new-student.show', ['data' => $data, 'title' => $title]);
     }

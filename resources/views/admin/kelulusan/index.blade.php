@@ -12,7 +12,7 @@
             
             <div class="card">
                 <div class="card-header">
-                   <strong class="text-danger">pastikan  siswa sudah mengisi data dengan lengakap agar bisa diluluskan</strong>
+                   <strong class="text-danger">Pastikan  siswa sudah mengisi data dengan lengkap agar bisa diluluskan</strong>
                     
                 </div>
                 <div class="card-body">

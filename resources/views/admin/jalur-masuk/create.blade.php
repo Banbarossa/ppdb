@@ -72,12 +72,21 @@
                             <input class="form-control @error('image') is-invalid @enderror" type="file"
                                 id="image" name="image">
                             <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                            <img src="{{asset('jalur/')}}/{{$data['jalur']->image}}" id="last_image" alt=""class="mt-2" width="200pt">
+                            <img id="previewImage" src="#" alt="Preview Image" style="display: none; width:200pt;" class="mt-2">
                             
+                        </div>
+                        <div class="mb-4 form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name="file_required" role="switch" id="flexSwitchCheckDefault" @if ($data['jalur']->file_required == true)
+                                checked
+                            @endif>
+                            <label for="file_require" class="form-label">Wajib Upload File?</label>
                         </div>
                         <div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
+                    
                 </div>
 
             
@@ -115,7 +124,26 @@
             }
         })
 
+        $("#image").change(function () {
+                readURL(this);
+            });
+
     })
+
+    function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    // Menampilkan pratinjau gambar menggunakan src elemen img
+                    $('#previewImage').attr('src', e.target.result);
+                    $('#last_image').addClass('d-none');
+                    $('#previewImage').show(); // Menampilkan elemen gambar
+                }
+
+                reader.readAsDataURL(input.files[0]); // Membaca file sebagai data URL
+            }
+        }
 </script>
 
     

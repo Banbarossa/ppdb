@@ -52,6 +52,10 @@
                                 <td>Status</td>
                                 <th>{{$item->status?'Aktif':'Tidak Aktif'}}</th>
                             </tr>
+                            <tr>
+                                <td>Perlu Berkas?</td>
+                                <th>{{$item->file_required ?'Ya':'Tidak'}}</th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -42,6 +42,11 @@ class JalurMasukController extends Controller
     public function store(JalurMasukRequest $request)
     {
 
+        $file_required = false;
+
+        if ($request->file_required == 'on') {
+            $file_required = true;
+        };
         $request->validate([
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:1024',
         ]);
@@ -59,6 +64,7 @@ class JalurMasukController extends Controller
             'meta_description' => $request->meta_description,
             'deskripsi' => $request->deskripsi,
             'image' => $request->nama_jalur . '.' . $extension,
+            'file_required' => $file_required,
         ]);
         Alert::success('Success', 'Jalur Pendaftaran Berhasil Ditambahkan');
         return redirect()->route('admin.jalur-pendaftaran.index');
@@ -97,6 +103,11 @@ class JalurMasukController extends Controller
      */
     public function update(JalurMasukRequest $request, string $id)
     {
+        $file_required = false;
+        if ($request->file_required == 'on') {
+            $file_required = true;
+        };
+
         $data = JalurMasuk::findOrFail($id);
         $file = $data->image;
 
@@ -106,11 +117,11 @@ class JalurMasukController extends Controller
             if ($file != null) {
                 Storage::delete(public_path('jalur/' . $file));
             }
-        }
-        $image = $request->file('image');
-        $extension = $image->getClientOriginalExtension();
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
 
-        $filePath = $image->move(public_path('jalur'), $request->nama_jalur . '.' . $extension);
+            $filePath = $image->move(public_path('jalur'), $request->nama_jalur . '.' . $extension);
+        }
 
         $data->update([
             'nama_jalur' => $request->nama_jalur,
@@ -120,6 +131,7 @@ class JalurMasukController extends Controller
             'meta_description' => $request->meta_description,
             'deskripsi' => $request->deskripsi,
             'image' => $request->nama_jalur . '.' . $extension,
+            'file_required' => $file_required,
         ]);
         Alert::success('Success', 'Data Berhasil Diubah');
         return redirect()->route('admin.jalur-pendaftaran.index');

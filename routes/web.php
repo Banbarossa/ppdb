@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PsbUser\DaftarUlangController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,10 +33,10 @@ require __DIR__ . '/admin_section.php';
 
 // coba panggil gambar dari storage
 
-route::get('gambar', function () {
-    $gambar = '';
-    return view('testgambar', compact('gambar'));
-});
+// route::get('gambar', function () {
+//     $gambar = '';
+//     return view('testgambar', compact('gambar'));
+// });
 
 // belum masuk ke auth
 
@@ -45,11 +46,18 @@ route::get('/gambar/{name}', function (String $name) {
     return response()->file($gambar);
 });
 
+
+route::get('/bukti-prestasi/{name}', function (String $name) {
+    $gambar = storage_path('app/buktiPrestasi/' . $name);
+
+    return response()->file($gambar);
+});
+
+
+
 // sementara
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('post', function () {
-    return view('post');
-});
+Route::get('psb/unduh-formulir', [DaftarUlangController::class, 'unduhFormulir'])->name('unduh-formulir');

@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'psb', 'as' => '
             return response()->file($storagepath);
         })->name('berkas');
 
-        Route::get('/unduh-formulir', [DaftarUlangController::class, 'unduhFormulir'])->name('unduh-formulir');
+        // Route::get('/unduh-formulir', [DaftarUlangController::class, 'unduhFormulir'])->name('unduh-formulir');
     });
 
 });

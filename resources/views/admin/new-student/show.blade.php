@@ -33,7 +33,7 @@
                                 </tr>                             
                                 <tr>
                                     <th>Jenjang</th>
-                                    <td>{{$data->jenjang ? $data->jenjang :'' }}</td>
+                                    <td>{{$data->jenjang ? $data->jenjang->nama_jenjang :'' }}</td>
                                 </tr>                             
                                 <tr>
                                     <th>nisn</th>
