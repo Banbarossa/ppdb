@@ -3,18 +3,37 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\StudentResource;
 use App\Models\NewStudent;
-use Illuminate\Http\Request;
+use App\Traits\ActiveYearTrait;
 
 class getDataStudent extends Controller
 {
-    public function getOne(Request $request)
+    use ActiveYearTrait;
+    public function getAll()
     {
-        $student = NewStudent::where('nisn', $request->nisn)->first();
-        if ($student) {
-            return response()->json(['data' => $student], 200);
-        } else {
-            return response()->json(['data' => 'Data tidak ditemukan'], 404);
-        }
+
+        $tahun = $this->getActiveYear();
+
+        $student = NewStudent::with('jenjang')->where('tahun_id', $tahun->id)->where('kelulusan', 1)->get();
+
+        return new StudentResource(true, 'Data Santri Baru', $student);
+
     }
+
+    public function getOne($nisn)
+    {
+
+        $tahun = $this->getActiveYear();
+
+        $student = NewStudent::with('jenjang')
+            ->where('tahun_id', $tahun->id)
+            ->where('kelulusan', 1)
+            ->where('nisn', $nisn)
+            ->first();
+
+        return new StudentResource(true, 'Detail Santri Baru', $student);
+
+    }
+
 }
