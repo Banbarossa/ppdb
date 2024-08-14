@@ -46,14 +46,11 @@ route::get('/gambar/{name}', function (String $name) {
     return response()->file($gambar);
 });
 
-
 route::get('/bukti-prestasi/{name}', function (String $name) {
     $gambar = storage_path('app/buktiPrestasi/' . $name);
 
     return response()->file($gambar);
 });
-
-
 
 // sementara
 Route::get('/dashboard', function () {

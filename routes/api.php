@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['middleware' => 'verify.api.token'], function () {
     Route::get('new-student', [\App\Http\Controllers\Api\getDataStudent::class, 'getAll']);
     Route::get('new-student-detail/{nisn}', [\App\Http\Controllers\Api\getDataStudent::class, 'getOne']);
+    Route::get('status', [\App\Http\Controllers\Api\getDataStudent::class, 'status']);
 
 });

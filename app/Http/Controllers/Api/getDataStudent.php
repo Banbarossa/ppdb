@@ -36,4 +36,16 @@ class getDataStudent extends Controller
 
     }
 
+    public function status($nisn)
+    {
+        $tahun = $this->getActiveYear();
+        $student = NewStudent::with('jenjang', 'user')
+            ->where('tahun_id', $tahun->id)
+            ->where('kelulusan', 1)
+            ->distinct()
+            ->pluck('status_anak');
+
+        return new StudentResource(true, 'Detail Santri Baru', $student);
+    }
+
 }
