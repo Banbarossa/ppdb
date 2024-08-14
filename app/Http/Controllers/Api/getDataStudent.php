@@ -15,7 +15,7 @@ class getDataStudent extends Controller
 
         $tahun = $this->getActiveYear();
 
-        $student = NewStudent::with('jenjang')->where('tahun_id', $tahun->id)->where('kelulusan', 1)->get();
+        $student = NewStudent::with('jenjang')->where('tahun_id', $tahun->id)->where('kelulusan', 1)->orderBy('nama')->get();
 
         return new StudentResource(true, 'Data Santri Baru', $student);
 
