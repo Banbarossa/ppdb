@@ -26,7 +26,7 @@ class getDataStudent extends Controller
 
         $tahun = $this->getActiveYear();
 
-        $student = NewStudent::with('jenjang')
+        $student = NewStudent::with('jenjang', 'user')
             ->where('tahun_id', $tahun->id)
             ->where('kelulusan', 1)
             ->where('nisn', $nisn)
