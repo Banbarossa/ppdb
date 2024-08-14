@@ -43,7 +43,7 @@ class getDataStudent extends Controller
             ->where('tahun_id', $tahun->id)
             ->where('kelulusan', 1)
             ->distinct()
-            ->pluck('status_anak');
+            ->pluck('status_rumah');
 
         return new StudentResource(true, 'Detail Santri Baru', $student);
     }
