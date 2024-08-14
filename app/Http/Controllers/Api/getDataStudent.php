@@ -36,7 +36,7 @@ class getDataStudent extends Controller
 
     }
 
-    public function status($nisn)
+    public function status()
     {
         $tahun = $this->getActiveYear();
         $student = NewStudent::with('jenjang', 'user')
